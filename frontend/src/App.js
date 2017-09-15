@@ -1,18 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Route } from 'react-router-dom';
+import PostsIndex from './components/PostsIndex';
+import PostForm from './components/PostForm';
+import PostsDetail from './components/PostsDetail';
+import PostCategory from './components/PostCategory';
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Route exact path='/posts' render={() => (
+            <PostsIndex
+              posts={this.state.posts}
+              />
+          )} />
+        <Route path='/form' render={() => (
+            <PostForm />
+          )}/>
+        <Route path='/posts/:id' render={() => (
+            <PostsDetail  />
+          )}/>
+          <Route path='/:category/posts' render={() => (
+              <PostCategory  />
+            )}/>
       </div>
     );
   }
