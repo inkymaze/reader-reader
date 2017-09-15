@@ -10,13 +10,19 @@ import './App.css';
 class App extends Component {
   state = {
     categories: [],
-    posts: [],
-    comments: []
+    posts: {
+      byId:{},
+      allIds:[]
+    },
+    comments: {
+      byId:{},
+      allIds:[]
+    }
   }
   render() {
     return (
       <div className="App">
-        <Route exact path='/posts' render={() => (
+        <Route path='/posts' render={() => (
             <PostsIndex
               posts={this.state.posts}
               />
