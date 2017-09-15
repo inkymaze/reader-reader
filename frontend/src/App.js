@@ -22,20 +22,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Route path='/posts' render={() => (
-            <PostsIndex
-              posts={this.state.posts}
-              />
-          )} />
-        <Route path='/form' render={() => (
-            <PostForm />
-          )}/>
-        <Route path='/posts/:id' render={() => (
-            <PostsDetail  />
-          )}/>
-          <Route path='/:category/posts' render={() => (
-              <PostCategory  />
-            )}/>
+        <Route exact path='/' render={() => (<PostsIndex/>)}/>
+        <Route path='/form' component={<PostForm />}/>
+        <Route path='/posts/:id' component={<PostsDetail />}/>
+        <Route path='/:category/posts' component={<PostCategory/>}/>
       </div>
     );
   }
