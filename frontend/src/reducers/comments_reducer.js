@@ -31,9 +31,9 @@ const CommentsReducer = (state = initialState, action) => {
       return nextState;
 
     case DELETE_COMMENT:
-      let commentToDelete = action.comment;
+      // byId[action.comment.id] = action.comment;
     // not sure if omit will work in this case
-      return _.omit(state, action.comment);
+       return _.omit(state, byId[action.comment.id] );
     default:
       return state;
 
