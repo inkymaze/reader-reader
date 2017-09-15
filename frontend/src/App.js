@@ -8,6 +8,11 @@ import PostCategory from './components/PostCategory';
 import './App.css';
 
 class App extends Component {
+  state = {
+    categories: [],
+    posts: [],
+    comments: []
+  }
   render() {
     return (
       <div className="App">

@@ -1,12 +1,18 @@
-const PostsReducer = (state = {}, action) => {
-  switch (action.type) {
-    case expression:
+import merge from 'lodash/merge';
+import {RECEIVE_POSTS, RECEIVE_POST} from '../actions/posts_actions';
 
-      break;
+
+
+const CommentsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case RECEIVE_POSTS:
+      return merge( {}, state)
+    case RECEIVE_POST:
+
     default:
       return state;
 
   }
 };
 
-export default PostsReducer;
+export default CommentsReducer;

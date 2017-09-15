@@ -1,11 +1,14 @@
+import merge from 'lodash/merge';
+
 
 
 
 const CommentsReducer = (state = {}, action) => {
   switch (action.type) {
-    case expression:
+    case :
+      return merge()
+    case :
 
-      break;
     default:
       return state;
 
