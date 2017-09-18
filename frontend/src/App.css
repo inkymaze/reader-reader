@@ -22,3 +22,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.list-group-item {
+  display: flex;
+  text-decoration: none
+}
+
+.post-detail-link {
+  text-decoration: none
+}
+
+.post-info {
+  border: 1px solid;
+text-decoration: none;
+text-align: left;
+margin: 50px;
+}

@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createPost } from '../actions/posts_actions';
+const  { DOM: { select } } = React
 
 class PostForm extends React.Component {
   state = { posts: {
@@ -22,9 +23,13 @@ class PostForm extends React.Component {
     return (
       <form >
         <Field name="title"
-            label="Title" />
-        <Field name="categories"
-          label="Categories" />
+            label="Title" pl/>
+          <Field name="category" component={select}>
+                <option></option>
+                <option value="react">React</option>
+                <option value="redux">Redux</option>
+                <option value="udacity">Udacity</option>
+              </Field>
         <Field name="body"
           label="Body" />
         <Field name="author"

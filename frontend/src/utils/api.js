@@ -6,7 +6,7 @@ export function fetchPosts () {
 }
 
 export function fetchPost (id) {
-  return fetch(`http://localhost:3001/posts${id}`,
+  return fetch(`http://localhost:3001/posts/${id}`,
     { headers: { 'Authorization': 'inkymaze' }})
     .then((res) => res.json());
 }
