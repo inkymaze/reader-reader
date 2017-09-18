@@ -5,7 +5,8 @@ import './index.css';
 import { createStore } from 'redux';
 import rootReducer from './reducers/root_reducer';
 import { BrowserRouter } from 'react-router-dom';
-import { fetchPosts } from './utils/api';
+import { fetchPosts, fetchPost } from './utils/api';
+import { receivePosts, receivePost } from './actions/posts_actions';
 
 
 
@@ -18,7 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // TEST START ****
   window.getState = store.getState;
+  window.dispatch = store.dispatch;
+  window.store = store;
   window.fetchPosts = fetchPosts;
+  window.fetchPost = fetchPost;
+  window.receivePosts = receivePosts;
+  // window.receivePost = receivePost;
+  // window.requestPosts = requestPosts;
+  // window.requestPost = requestPost;
   // TEST END ****
   ReactDOM.render(
     <BrowserRouter store={store}>

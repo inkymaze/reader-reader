@@ -1,3 +1,4 @@
+// import { fetchPosts, fetchPost } from '../utils/api';
 
 
 
@@ -14,3 +15,16 @@ export const receivePost = (post) => ({
   type: RECEIVE_POST,
   post
 });
+
+
+// export const requestPosts = () => dispatch => {
+//   return fetchPosts().then( posts => {
+//       dispatch(receivePosts(posts));
+//     });
+// };
+//
+// export const requestPost = (id) => dispatch => {
+//   return fetchPost(id).then( post => {
+//       dispatch(receivePost(post));
+//     });
+// };
