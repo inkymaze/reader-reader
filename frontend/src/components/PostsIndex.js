@@ -9,7 +9,7 @@ class PostsIndex extends React.Component {
 // must have buttons to filter through categories
   render () {
     return (
-      <h3>Test</h3>
+      <h3>Hello</h3>
     );
   }
 }

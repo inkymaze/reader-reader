@@ -5,14 +5,25 @@ import './index.css';
 import { createStore } from 'redux';
 import rootReducer from './reducers/root_reducer';
 import { BrowserRouter } from 'react-router-dom';
+import { fetchPosts } from './utils/api';
 
-const store = createStore(
-  rootReducer
-);
 
-ReactDOM.render(
-  <BrowserRouter store={store}>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const store = createStore(
+    rootReducer,
+     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
+
+  // TEST START ****
+  window.getState = store.getState;
+  window.fetchPosts = fetchPosts;
+  // TEST END ****
+  ReactDOM.render(
+    <BrowserRouter store={store}>
+      <App />
+    </BrowserRouter>,
+    document.getElementById('root')
+  );
+});
