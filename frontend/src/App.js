@@ -28,11 +28,12 @@ class App extends Component {
     });
   }
 
-  handleFetchPost(id) {
-    return (
-      this.state.posts.byId[id]
-    )
-  }
+  // handleFetchPost(id) {
+  //   console.log(id);
+  //   return (
+  //     this.state.posts.byId[id]
+  //   )
+  // }
 
 
   render() {
@@ -41,7 +42,7 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' render={() => (<PostsIndex posts={this.state.posts} />)}/>
-          <Route exact path='/posts/:id' render={(id) => (<PostsDetail post={this.handleFetchPost(id)} />)}/>
+          <Route exact path='/posts/:id' render={(id) => (<PostsDetail postId={id} />)}/>
         </Switch>
       </div>
     );
@@ -49,3 +50,5 @@ class App extends Component {
 }
 
 export default App;
+
+// post={this.handleFetchPost(id)}

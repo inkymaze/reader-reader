@@ -9,23 +9,24 @@ class PostsDetail extends React.Component {
     post: {}
   }
 componentDidMount() {
-  console.log(this.props);
-  // fetchPost(id).then((data) => { this.setState({ post: {byId: data} }) });
+  fetchPost(this.props.postId.match.params.id).then((data) => { this.setState({ post: data} )} );
 }
 
 render (){
-  const {postId, posts} = this.props;
-  console.log(this.props.byId);
+
+  const {post} = this.state;
+
   return (
     <div>
       <Link to="/">Homepage</Link>
       <div>
-        <h2>{posts.title}</h2>
-        <h5>Category: {posts.category}</h5>
-        <h6>{posts.author}</h6>
-        <p>{posts.body}</p>
-        <Link to={`/form/${postId}`}>Edit Post</Link>
+        <h3>Title:{post.title}</h3>
+        <h5>Category: {post.category}</h5>
+        <h5>Author:{post.author}</h5>
+        <p>Body:{post.body}</p>
+        <Link to={`/form/${post.id}`}>Edit Post</Link>
       </div>
+
 
     </div>
   );

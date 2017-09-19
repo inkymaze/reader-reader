@@ -10,9 +10,8 @@ class PostsIndex extends React.Component {
         <div className='list-group-item' key={post.id}>
          <Link to={`/posts/${post.id}`} className='post-detail-link'>
            <ul className='post-info'>
-             <li>{post.title}</li>
-              <li>{post.body}</li>
-              <li>by: {post.author}</li>
+             <PostsDetail postId={post.id} />
+
            </ul>
          </Link>
        </div>
