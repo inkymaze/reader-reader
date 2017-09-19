@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PostsIndex from './components/PostsIndex';
 import PostForm from './components/PostForm';
+import PostNew from './components/PostNew';
 import PostsShow from './components/PostsShow';
 import PostCategory from './components/PostCategory';
-import { fetchPosts, fetchPost, fetchCategories} from './utils/api';
+import { fetchPosts, fetchCategories} from './utils/api';
 
 import './App.css';
 
@@ -21,14 +22,11 @@ class App extends Component {
     }
   }
 
-
     componentDidMount() {
       fetchPosts().then((data) => { this.setState({ posts: {byId: data} }) });
       fetchCategories().then((data) => { this.setState({ categories: data });
     });
   }
-
-
 
 
   // handleFetchPost(id) {
@@ -46,7 +44,8 @@ class App extends Component {
         <Switch>
           <Route exact path='/' render={() => (<PostsIndex posts={this.state.posts} />)}/>
           <Route exact path='/posts/:id' render={(id) => (<PostsShow postId={id} />)}/>
-          <Route exact path='/form/:id' render={(id) => (<PostForm postId={id} />)}/>
+          <Route exact path='/form/:id' render={(post) => (<PostForm post={post} />)}/>
+          <Route exact path='/form' render={() => (<PostNew />)}/>
         </Switch>
       </div>
     );

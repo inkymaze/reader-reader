@@ -25,3 +25,13 @@ export function updatePost(values, cb) {
     .then((res) => res.json())
     .then(() => cb());
 }
+
+export function createPost(values, cb) {
+
+  return fetch('http://localhost:3001/posts/',
+    { headers: { 'Authorization': 'inkymaze'},
+      method: 'POST'
+    })
+    .then((res) => res.json())
+    .then(() => cb());
+}

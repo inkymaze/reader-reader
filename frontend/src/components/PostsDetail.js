@@ -5,17 +5,17 @@ import { fetchPost } from '../utils/api';
 
 
 class PostsDetail extends React.Component {
-  state = {
-    post: {}
-  }
-componentDidMount() {
-
-  fetchPost(this.props.postId).then((data) => { this.setState({ post: data} )} );
-}
+//   state = {
+//     post: {}
+//   }
+// componentDidMount() {
+//
+//   fetchPost(this.props.postId).then((data) => { this.setState({ post: data} )} );
+// }
 
 render (){
-  console.log(this.props);
-  const {post} = this.state;
+
+  const {post} = this.props;
 
   return (
     <div>

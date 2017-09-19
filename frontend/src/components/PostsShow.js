@@ -9,7 +9,6 @@ class PostsShow extends React.Component {
     post: {}
   }
 componentDidMount() {
-
   fetchPost(this.props.postId.match.params.id).then((data) => { this.setState({ post: data} )} );
 }
 

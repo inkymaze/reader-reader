@@ -28,7 +28,7 @@ class PostsIndex extends React.Component {
         <div className='list-group-item' key={post.id}>
          <Link to={`/posts/${post.id}`} className='post-detail-link'>
            <ul className='post-info'>
-             <PostsDetail postId={post.id} />
+             <PostsDetail post={post} />
 
            </ul>
          </Link>
@@ -44,6 +44,7 @@ class PostsIndex extends React.Component {
         <ul className='posts-list'>
           {this.renderPosts()}
         </ul>
+        <Link to='/form' >Create New Post</Link>
       </div>
     );
   }
