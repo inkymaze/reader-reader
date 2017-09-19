@@ -43,12 +43,9 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' render={() => (<PostsIndex posts={this.state.posts} />)}/>
-          <Route exact path='/posts/:id' render={(id) => (<PostsShow postId={id} />)}/>
+          <Route exact path='/posts/:id' component={PostsShow}/>
           <Route exact path='/form/:id' render={(post) => (<PostForm post={post} />)}/>
-
-          <Route exact path='/form' 
-            render={(props) =>
-              (<PostNew {...props}/>)}/>
+          <Route exact path='/form' component={PostNew}/>
 
         </Switch>
       </div>

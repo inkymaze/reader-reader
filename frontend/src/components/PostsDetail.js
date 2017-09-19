@@ -14,7 +14,7 @@ class PostsDetail extends React.Component {
 // }
 
 render (){
-
+  console.log(this.props);
   const {post} = this.props;
 
   return (

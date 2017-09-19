@@ -36,7 +36,7 @@ class PostsNew extends Component {
     console.log('Props',this.props);
     console.log('State', this.state);
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
         <input
                 type="text"
                 value={this.state.title}
@@ -61,7 +61,7 @@ class PostsNew extends Component {
                 value={this.state.author}
                 placeholder="Post Author"
                 onChange={this.update("author")}/>
-        <button type='submit' className='btn btn-primary'>Submit</button>
+        <button type='submit' className='submit-btn'>Submit</button>
         <Link to='/' className='btn btn-danger'>Cancel</Link>
       </form>
     );

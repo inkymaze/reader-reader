@@ -48,10 +48,10 @@ class PostsIndex extends React.Component {
     console.log('State', this.state);
     return (
       <div>
+        <Link className='form-link' to='/form' >Create New Post</Link>
         <ul className='posts-list'>
           {this.renderPosts()}
         </ul>
-        <Link to='/form' >Create New Post</Link>
       </div>
     );
   }

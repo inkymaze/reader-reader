@@ -38,3 +38,38 @@ text-decoration: none;
 text-align: left;
 margin: 50px;
 }
+
+.form-link {
+  display: flex;
+  justify-content: flex-end;
+  margin: 30px;
+  text-decoration: none;
+}
+
+.submit-btn {
+
+  width: 72px;
+  height: 52px;
+  word-wrap: break-word;
+  border-radius: 7px;
+  background: blue;
+  cursor: pointer;
+  border: 1px solid #e8e8e8;
+  color: white;
+  font-weight: 500;
+  font-size: 13px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  font-family: comic;
+
+
+
+}
+
+.new-post-form {
+  display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 80px;
+}

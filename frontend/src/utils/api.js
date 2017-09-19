@@ -28,23 +28,6 @@ export function updatePost(values, cb) {
     .then(() => cb());
 }
 
-// export function createPost(values, cb) {
-//
-//   return fetch('http://localhost:3001/posts/',
-//     { headers: { 'Authorization': 'inkymaze',
-//     'Accept': 'application/json',
-//   'Content-Type': 'application/json'
-//   },
-//       method: 'POST',
-//       body: JSON.stringify(post)
-//     })
-//     .then((res) => res.json())
-//     .then(() => cb());
-// }
-
-
-
-
 export const createPost = (post) =>
   fetch('http://localhost:3001/posts/', {
    method: 'POST',
@@ -56,3 +39,15 @@ export const createPost = (post) =>
    body: JSON.stringify(post)
  })
  .then(res => res.json());
+
+ export const deletePost = (post) =>
+   fetch(`http://localhost:3001/posts/${post.id}`, {
+    method: 'DELETE',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': 'inkymaze',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(post)
+  })
+  .then(res => res.json());
