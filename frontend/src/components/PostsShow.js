@@ -4,13 +4,13 @@ import { fetchPost } from '../utils/api';
 
 
 
-class PostsDetail extends React.Component {
+class PostsShow extends React.Component {
   state = {
     post: {}
   }
 componentDidMount() {
 
-  fetchPost(this.props.postId).then((data) => { this.setState({ post: data} )} );
+  fetchPost(this.props.postId.match.params.id).then((data) => { this.setState({ post: data} )} );
 }
 
 render (){
@@ -33,4 +33,4 @@ render (){
 }
 }
 
-export default PostsDetail;
+export default PostsShow;

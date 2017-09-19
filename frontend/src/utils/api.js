@@ -16,3 +16,12 @@ export function fetchCategories () {
     { headers: { 'Authorization': 'inkymaze' }})
     .then((res) => res.json());
 }
+
+export function updatePost(values, cb) {
+  return fetch(`http://localhost:3001/posts/${values.id}`,
+    { headers: { 'Authorization': 'inkymaze'},
+      method: 'PUT'
+    })
+    .then((res) => res.json())
+    .then(() => cb());
+}

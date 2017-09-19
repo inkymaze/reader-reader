@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, initialize } from 'redux-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createPost } from '../actions/posts_actions';
@@ -19,9 +19,40 @@ class PostForm extends React.Component {
     }
   }
 }
+
+// const renderField = field => (
+//     <div>
+//       <label>{field.input.label</label>
+//       <input {...field.input}/>
+//       {field.touched && field.error && <div className="error">{field.error}</div>}
+//     </div>
+// );
+//
+// const renderSelect = field => (
+//   <div>
+//     <label>{field.input.label</label>
+//     <select {...field.input}/>
+//     {field.touched && field.error && <div className="error">{field.error}</div>}
+//   </div>
+// );
+
+
+
+
+onSubmit(values) {
+
+    this.props.updatePost(values, () => {
+      this.props.history.push('/');
+    });
+  }
+
   render() {
+    console.log(this.props);
+    const { handleSubmit } = this.props;
+
+
     return (
-      <form >
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <Field name="title"
             label="Title" pl/>
           <Field name="category" component={select}>
@@ -43,10 +74,15 @@ class PostForm extends React.Component {
     );
   }
 }
-//
-//
-// export default reduxForm({
-//   val
-// })
 
-export default PostForm;
+const form = reduxForm({
+  form: 'PostForm'
+});
+
+function mapStateToProps(state) {
+  return {
+    posts: state.posts
+  };
+}
+
+export default connect(mapStateToProps)(form(PostForm));

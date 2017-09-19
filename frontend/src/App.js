@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PostsIndex from './components/PostsIndex';
 import PostForm from './components/PostForm';
-import PostsDetail from './components/PostsDetail';
+import PostsShow from './components/PostsShow';
 import PostCategory from './components/PostCategory';
 import { fetchPosts, fetchPost, fetchCategories} from './utils/api';
 
@@ -28,6 +28,9 @@ class App extends Component {
     });
   }
 
+
+
+
   // handleFetchPost(id) {
   //   console.log(id);
   //   return (
@@ -42,7 +45,8 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' render={() => (<PostsIndex posts={this.state.posts} />)}/>
-          <Route exact path='/posts/:id' render={(id) => (<PostsDetail postId={id} />)}/>
+          <Route exact path='/posts/:id' render={(id) => (<PostsShow postId={id} />)}/>
+          <Route exact path='/form/:id' render={(id) => (<PostForm postId={id} />)}/>
         </Switch>
       </div>
     );
