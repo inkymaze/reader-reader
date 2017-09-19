@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import randomize from 'randomatic';
 import { connect } from 'react-redux';
 import { createPost } from '../utils/api';
 
@@ -15,18 +16,23 @@ class PostsNew extends Component {
     deleted: 'False'
   };
 
-
-  handleSubmit(values) {
-    console.log('Values',values);
-    createPost(values, () => {
-      this.props.history.push('/');
-    });
+  componentDidMount() {
+    this.state.id = randomize('a0', 16);
   }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    createPost(this.state)
+      .then(() => this.props.history.push('/'));
+
+  }
+
   update(field) {
     return e => this.setState({[field]: e.target.value });
   }
 
   render () {
+    const { handleSubmit } = this.props
     console.log('Props',this.props);
     console.log('State', this.state);
     return (
@@ -49,16 +55,12 @@ class PostsNew extends Component {
                      <option value="react">React</option>
                      <option value="redux">Redux</option>
                      <option value="udacity">Udacity</option>
-
                    </select>
         <input
                 type="select"
                 value={this.state.author}
                 placeholder="Post Author"
                 onChange={this.update("author")}/>
-
-
-
         <button type='submit' className='btn btn-primary'>Submit</button>
         <Link to='/' className='btn btn-danger'>Cancel</Link>
       </form>

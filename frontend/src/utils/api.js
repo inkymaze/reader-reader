@@ -19,19 +19,40 @@ export function fetchCategories () {
 
 export function updatePost(values, cb) {
   return fetch(`http://localhost:3001/posts/${values.id}`,
-    { headers: { 'Authorization': 'inkymaze'},
+    { headers: { 'Authorization': 'inkymaze',
+    'Accept': 'application/json',
+'Content-Type': 'application/json'},
       method: 'PUT'
     })
     .then((res) => res.json())
     .then(() => cb());
 }
 
-export function createPost(values, cb) {
+// export function createPost(values, cb) {
+//
+//   return fetch('http://localhost:3001/posts/',
+//     { headers: { 'Authorization': 'inkymaze',
+//     'Accept': 'application/json',
+//   'Content-Type': 'application/json'
+//   },
+//       method: 'POST',
+//       body: JSON.stringify(post)
+//     })
+//     .then((res) => res.json())
+//     .then(() => cb());
+// }
 
-  return fetch('http://localhost:3001/posts/',
-    { headers: { 'Authorization': 'inkymaze'},
-      method: 'POST'
-    })
-    .then((res) => res.json())
-    .then(() => cb());
-}
+
+
+
+export const createPost = (post) =>
+  fetch('http://localhost:3001/posts/', {
+   method: 'POST',
+   headers: {
+     'Accept': 'application/json',
+     'Authorization': 'inkymaze',
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify(post)
+ })
+ .then(res => res.json());

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "randomatic": "^1.1.7",
     "react": "^15.6.1",
     "react-loading": "^0.1.4",
     "react-redux": "^5.0.6",
