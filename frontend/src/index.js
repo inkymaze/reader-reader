@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/root_reducer';
 import { BrowserRouter } from 'react-router-dom';
 import { fetchPosts, fetchPost } from './utils/api';
-import {Provider} from 'react-redux'
-import { receivePosts } from './actions/posts_actions';
+import {Provider} from 'react-redux';
+import { requestPosts } from './actions/posts_actions';
+import thunk from 'redux-thunk';
 
 
 
@@ -15,7 +16,7 @@ import { receivePosts } from './actions/posts_actions';
 document.addEventListener('DOMContentLoaded', () => {
   const store = createStore(
     rootReducer,
-     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    applyMiddleware(thunk)
   );
 
   // TEST START ****
@@ -24,9 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.fetchPosts = fetchPosts;
   window.fetchPost = fetchPost;
-  window.receivePosts = receivePosts;
+  // window.receivePosts = receivePosts;
   // window.receivePost = receivePost;
-  // window.requestPosts = requestPosts;
+  window.requestPosts = requestPosts;
   // window.requestPost = requestPost;
   // TEST END ****
   ReactDOM.render(

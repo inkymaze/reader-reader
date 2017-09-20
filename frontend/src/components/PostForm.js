@@ -18,7 +18,6 @@ handleSubmit(e) {
   e.preventDefault();
   updatePost(this.state)
     .then(() => this.props.history.push('/'));
-
 }
 
 update(field) {
@@ -30,21 +29,15 @@ update(field) {
     return(
 
           <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
-            <input
-                    type="text"
-
+            <input  type="text"
                     placeholder={this.state.title}
                     onChange={this.update("title")}/>
-            <input
-                    type="text"
+            <input  type="text"
                     placeholder={this.state.body}
                     onChange={this.update("body")}
                   />
-
-            <select value={this.state.category}
-                       ref={select => this.select = select}
-                       onChange={this.update("category")}>
-                 <option value="none" disabled>Move to...</option>
+            <select onChange={this.update("category")}>
+                 <option value="none" disabled>Select Category...</option>
                  <option value="react">React</option>
                  <option value="redux">Redux</option>
                  <option value="udacity">Udacity</option>
@@ -56,10 +49,8 @@ update(field) {
             <button type='submit' className='submit-btn'>Submit</button>
             <Link to='/' className='btn btn-danger'>Cancel</Link>
           </form>
-
     );
   }
-
 }
 
 export default PostForm;

@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PostsDetail from './PostsDetail';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { fetchPosts, fetchCategories} from '../utils/api';
+// import { fetchPosts, fetchCategories} from '../utils/api';
+import { requestPosts } from '../actions/posts_actions';
+
 class PostsIndex extends React.Component {
   state = {
     categories: [],
@@ -16,14 +19,12 @@ class PostsIndex extends React.Component {
     }
   }
 
-
-
-
   componentDidMount() {
-    fetchPosts().then((data) => { this.setState({ posts: {byId: data} }) });
-    fetchCategories().then((data) => { this.setState({ categories: data });
-  });
-}
+    // fetchPosts().then((data) => { this.setState({ posts: {byId: data} }) });
+    // fetchCategories().then((data) => { this.setState({ categories: data });
+    this.props.requestPosts().then((data) => { this.setState({ posts: {byId: data} }) });
+  };
+
 
 
 
@@ -31,14 +32,14 @@ class PostsIndex extends React.Component {
   renderPosts() {
     return _.map(this.state.posts.byId, post => {
       return (
-        <div className='list-group-item'>
-         <Link to={`/posts/${post.id}`} className='post-detail-link'>
+
+         <Link to={`/posts/${post.id}`} className='post-detail-link' key={post.id}>
            <ul className='post-info'>
              <PostsDetail post={post} key={post.id}/>
 
            </ul>
          </Link>
-       </div>
+
       );
     });
   }
@@ -57,4 +58,9 @@ class PostsIndex extends React.Component {
   }
 }
 
-export default PostsIndex;
+const mapDispatchToProps = dispatch => ({
+  requestPosts:     () => dispatch(requestPosts())
+
+});
+
+export default connect(null,mapDispatchToProps)(PostsIndex);

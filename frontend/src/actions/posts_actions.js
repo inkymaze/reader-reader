@@ -1,4 +1,4 @@
-// import { fetchPosts, fetchPost } from '../utils/api';
+import { fetchPosts, fetchPost } from '../utils/api';
 
 
 
@@ -17,14 +17,14 @@ export const receivePost = (post) => ({
 });
 
 
-// export const requestPosts = () => dispatch => {
-//   return fetchPosts().then( posts => {
-//       dispatch(receivePosts(posts));
-//     });
-// };
-//
-// export const requestPost = (id) => dispatch => {
-//   return fetchPost(id).then( post => {
-//       dispatch(receivePost(post));
-//     });
-// };
+export const requestPosts = () => dispatch => {
+  return fetchPosts().then( posts => {
+      dispatch(receivePosts(posts));
+    });
+};
+
+export const requestPost = (id) => dispatch => {
+  return fetchPost(id).then( post => {
+      dispatch(receivePost(post));
+    });
+};
