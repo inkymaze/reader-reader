@@ -17,16 +17,17 @@ export function fetchCategories () {
     .then((res) => res.json());
 }
 
-export function updatePost(values, cb) {
-  return fetch(`http://localhost:3001/posts/${values.id}`,
+export const updatePost = (post) =>
+  fetch(`http://localhost:3001/posts/${post.id}`,
     { headers: { 'Authorization': 'inkymaze',
-    'Accept': 'application/json',
-'Content-Type': 'application/json'},
-      method: 'PUT'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'},
+      method: 'PUT',
+      body: JSON.stringify(post)
     })
-    .then((res) => res.json())
-    .then(() => cb());
-}
+    .then((res) => res.json());
+
+
 
 export const createPost = (post) =>
   fetch('http://localhost:3001/posts/', {

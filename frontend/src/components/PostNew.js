@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import randomize from 'randomatic';
-import { connect } from 'react-redux';
 import { createPost } from '../utils/api';
 
 class PostsNew extends Component {
@@ -17,7 +16,8 @@ class PostsNew extends Component {
   };
 
   componentDidMount() {
-    this.state.id = randomize('a0', 16);
+    this.setState({id: randomize('a0', 16)})
+
   }
 
   handleSubmit(e) {
@@ -32,9 +32,6 @@ class PostsNew extends Component {
   }
 
   render () {
-    const { handleSubmit } = this.props
-    console.log('Props',this.props);
-    console.log('State', this.state);
     return (
       <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
         <input
@@ -51,7 +48,7 @@ class PostsNew extends Component {
                 <select value={this.state.category}
                            ref={select => this.select = select}
                            onChange={this.update("category")}>
-                     <option value="none" disabled>Move to...</option>
+                     <option value="none" disabled>Select Category...</option>
                      <option value="react">React</option>
                      <option value="redux">Redux</option>
                      <option value="udacity">Udacity</option>
@@ -68,11 +65,6 @@ class PostsNew extends Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     posts: state
-//   }
-// }
 
 
 export default (PostsNew);

@@ -18,7 +18,7 @@ onDeletePost(e) {
 }
 
 render (){
-  console.log(this.props);
+
   const {post} = this.state;
 
   return (
@@ -28,7 +28,7 @@ render (){
         <h5>Category: {post.category}</h5>
         <h5>Author:{post.author}</h5>
         <p>Body:{post.body}</p>
-        <Link to={`/form/${post.id}`}>Edit Post</Link>
+        <Link to={`/posts/${post.id}/edit`}>Edit Post</Link>
         <button onClick={(e) => (this.onDeletePost(e))}>Delete Post</button>
       </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PostsDetail from './PostsDetail';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { fetchPosts, fetchPost, fetchCategories} from '../utils/api';
+import { fetchPosts, fetchCategories} from '../utils/api';
 class PostsIndex extends React.Component {
   state = {
     categories: [],

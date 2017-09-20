@@ -7,7 +7,7 @@ import rootReducer from './reducers/root_reducer';
 import { BrowserRouter } from 'react-router-dom';
 import { fetchPosts, fetchPost } from './utils/api';
 import {Provider} from 'react-redux'
-import { receivePosts, receivePost } from './actions/posts_actions';
+import { receivePosts } from './actions/posts_actions';
 
 
 
