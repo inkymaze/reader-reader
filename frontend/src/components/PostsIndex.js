@@ -30,7 +30,7 @@ class PostsIndex extends React.Component {
 
 
   renderPosts() {
-    return _.map(this.state.posts.byId, post => {
+    return _.map(this.props.posts.byId, post => {
       return (
 
          <Link to={`/posts/${post.id}`} className='post-detail-link' key={post.id}>
@@ -45,12 +45,14 @@ class PostsIndex extends React.Component {
   }
 // must have buttons to filter through categories
   render () {
-    console.log('PRops', this.props);
+    console.log('Props', this.props);
     console.log('State', this.state);
+    // console.log(this.props.posts);
     return (
       <div>
         <Link className='form-link' to='/form' >Create New Post</Link>
         <ul className='posts-list'>
+          Hello
           {this.renderPosts()}
         </ul>
       </div>
@@ -58,9 +60,14 @@ class PostsIndex extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  requestPosts:     () => dispatch(requestPosts())
+const mapStateToProps = ({posts}) => {
+  return (
+    posts
+  )
+}
 
+const mapDispatchToProps = dispatch => ({
+    requestPosts:     () => dispatch(requestPosts())
 });
 
-export default connect(null,mapDispatchToProps)(PostsIndex);
+export default connect(mapStateToProps,mapDispatchToProps)(PostsIndex);

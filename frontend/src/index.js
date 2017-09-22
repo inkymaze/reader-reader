@@ -7,7 +7,7 @@ import rootReducer from './reducers/root_reducer';
 import { BrowserRouter } from 'react-router-dom';
 import { fetchPosts, fetchPost } from './utils/api';
 import {Provider} from 'react-redux';
-import { requestPosts } from './actions/posts_actions';
+import { requestPosts, requestPost, receivePosts, receivePost } from './actions/posts_actions';
 import thunk from 'redux-thunk';
 
 
@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store;
   window.fetchPosts = fetchPosts;
   window.fetchPost = fetchPost;
-  // window.receivePosts = receivePosts;
-  // window.receivePost = receivePost;
+  window.receivePosts = receivePosts;
+  window.receivePost = receivePost;
   window.requestPosts = requestPosts;
-  // window.requestPost = requestPost;
+  window.requestPost = requestPost;
   // TEST END ****
   ReactDOM.render(
     <Provider store={store}>
