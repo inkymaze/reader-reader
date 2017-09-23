@@ -18,8 +18,9 @@ class PostsDetail extends React.Component {
     return time;
   }
   render (){
-    const {post} = this.props;
 
+    const {post} = this.props;
+    console.log(this.props);
     return (
       <div>
         <div>
@@ -28,7 +29,7 @@ class PostsDetail extends React.Component {
           <h5>Author:{post.author}</h5>
           <h5>{this.timeConverter(this.props.post.timestamp)}</h5>
           <p>Body:{post.body}</p>
-          <Link to={`/posts/${post.id}`}>Edit Post</Link>
+        
         </div>
       </div>
     );

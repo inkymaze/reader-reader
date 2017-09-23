@@ -14,11 +14,18 @@ const PostsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_POSTS:
+    const newObj = merge({},state);
+
+    //
+
       action.posts.forEach(post => {
         byId[post.id] = post;
         allIds.unshift(post.id);
       });
-      return merge({}, state, { byId }, { allIds });
+      newObj.byId = byId;
+      newObj.allIds = allIds;
+        return newObj;
+      // return merge({}, state, { byId }, { allIds });
     case RECEIVE_POST:
       allIds.unshift(action.post.id);
       return merge({},

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { updatePost, fetchPost } from '../utils/api';
+import { requestUpdatePost, requestPost } from '../actions/posts_actions';
+import { connect } from 'react-redux';
 const  { DOM: { select } } = React;
 
 
@@ -10,13 +11,15 @@ class PostForm extends React.Component {
 
 
 componentDidMount() {
-  fetchPost(this.props.match.params.id)
+  this.props.requestPost(this.props.match.params.id)
+  // .then((data) => { this.setState({ posts: {byId: data} }) });
+  // requestPost(this.props.match.params.id)
     .then((post) => { this.setState(post);} );
 }
 
 handleSubmit(e) {
   e.preventDefault();
-  updatePost(this.state)
+  requestUpdatePost(this.state)
     .then(() => this.props.history.push('/'));
 }
 
@@ -24,7 +27,8 @@ update(field) {
   return e => this.setState({ [field]: e.target.value });
 }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
+    console.log(this.props);
 
     return(
 
@@ -53,4 +57,17 @@ update(field) {
   }
 }
 
-export default PostForm;
+
+const mapStateToProps = ({post}) => {
+  return (
+    post
+  )
+}
+
+const mapDispatchToProps = dispatch => ({
+    requestPost:     (id) => dispatch(requestPost(id))
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(PostForm);
+
+// export default PostForm;
