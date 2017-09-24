@@ -29,21 +29,18 @@ class App extends Component {
   // }
 
   render() {
-
     return (
       <div className="App">
         <Switch>
           <Route exact path='/' component={PostsIndex}/>
+          <Route exact path='/form' component={PostNew}/>
           <Route exact path='/:category' component={PostCategory}/>
           <Route exact path='/posts/:id' component={PostsShow}/>
           <Route exact path='/posts/:id/edit' component={PostForm}/>
-          <Route exact path='/form' component={PostNew}/>
-
         </Switch>
       </div>
     );
   }
 }
-
 
 export default App;

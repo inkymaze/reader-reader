@@ -1,22 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { requestCategories } from '../actions/category_actions';
-
+import { requestPosts } from '../actions/posts_actions';
+import _ from 'lodash';
+import PostsDetail from './PostsDetail';
+import { Link } from 'react-router-dom';
 
 class PostCategory extends React.Component {
   componentDidMount() {
-    this.props.requestCategories();
+    const category = this.props.match.params.category;
+    if (category) {
+      this.props.requestPosts();
+    }
 
   }
 
-  renderCategories() {
-    const {categories} = this.props;
-    console.log('Category comp',this.props);
-    return (
-    <div>
+  // renderCategories() {
+  //   const {categories} = this.props;
+  //   console.log('Category component',this.props);
+  //   return (
+  //   <div>
+  //
+  //   </div>
+  // );
+  // }
 
-    </div>
-  );
+  renderCategoryPosts() {
+    const category = this.props.match.params.category;
+
+    return _.map(this.props.posts.byId, post => {
+      console.log('in RenderCategoryPosts', post.category);
+      if (post.category === category) {
+      return (
+
+         <Link to={`/posts/${post.id}`} className='post-detail-link' key={post.id}>
+           <ul className='post-info'>
+             <PostsDetail post={post} key={post.id}/>
+           </ul>
+         </Link>
+
+      );
+    }
+    });
   }
 
 
@@ -24,7 +49,7 @@ class PostCategory extends React.Component {
     return (
       <div>
 
-          {this.renderCategories()}
+          {this.renderCategoryPosts()}
       </div>
     );
   }
@@ -32,14 +57,14 @@ class PostCategory extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-
+  posts: state.posts,
   categories: state.categories
 });
 
 const mapDispatchToProps = dispatch => ({
 
-    requestCategories: () => dispatch(requestCategories())
-
+    requestCategories: () => dispatch(requestCategories()),
+    requestPosts: () => dispatch(requestPosts())
 
 });
 
