@@ -7,65 +7,80 @@ const  { DOM: { select } } = React;
 
 class PostForm extends React.Component {
   state = {
+    posts: {
+      byId:{},
+      allIds:[]
+    }
   }
-
 
 componentDidMount() {
   this.props.requestPost(this.props.match.params.id)
-  // .then((data) => { this.setState({ posts: {byId: data} }) });
+    .then((data) => { this.setState({ posts: {byId: data} }); });
   // requestPost(this.props.match.params.id)
-    .then((post) => { this.setState(post);} );
+    // .then((post) => { this.setState(post);} );
 }
 
 handleSubmit(e) {
   e.preventDefault();
-  requestUpdatePost(this.state)
+  // this.setState({id = this.props.match.params.id});
+  this.props.requestUpdatePost(this.state)
     .then(() => this.props.history.push('/'));
 }
 
 update(field) {
   return e => this.setState({ [field]: e.target.value });
 }
+
   render() {
-    // console.log(this.state);
-    console.log(this.props);
 
+    console.log('Props',this.props);
+    const singlePost = this.props.posts.byId[this.props.match.params.id];
+
+    if (!singlePost) return null;
+    console.log('SinglePost',singlePost);
+    console.log('State',this.state);
     return(
+      <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
+        <input  type="text"
+                placeholder={singlePost.title}
 
-          <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
-            <input  type="text"
-                    placeholder={this.state.title}
-                    onChange={this.update("title")}/>
-            <input  type="text"
-                    placeholder={this.state.body}
-                    onChange={this.update("body")}
-                  />
-            <select onChange={this.update("category")}>
-                 <option value="none" disabled>Select Category...</option>
-                 <option value="react">React</option>
-                 <option value="redux">Redux</option>
-                 <option value="udacity">Udacity</option>
-               </select>
-            <input
-                    type="text"
-                    placeholder={this.state.author}
-                    onChange={this.update("author")}/>
-            <button type='submit' className='submit-btn'>Submit</button>
-            <Link to='/' className='btn btn-danger'>Cancel</Link>
-          </form>
+                onChange={this.update("title")}/>
+        <input  type="text"
+                placeholder={singlePost.body}
+                onChange={this.update("body")}
+              />
+        <select onChange={this.update("category")}>
+             <option value="none" disabled>Select Category...</option>
+             <option value="react">React</option>
+             <option value="redux">Redux</option>
+             <option value="udacity">Udacity</option>
+           </select>
+        <input
+                type="text"
+                placeholder={singlePost.author}
+                onChange={this.update("author")}/>
+        <button type='submit' className='submit-btn'>Submit</button>
+        <Link to='/' className='btn btn-danger'>Cancel</Link>
+      </form>
     );
   }
 }
 
 
-const mapStateToProps = ({post}) => {
-  return (
-    post
-  )
-}
+// const mapStateToProps = (state, ownProps) => ({
+//   post: state.posts[ownProps.match.params.id]
+//
+// });
+
+const mapStateToProps = (state, ownProps) => ({
+  posts: state.posts
+
+});
+
 
 const mapDispatchToProps = dispatch => ({
-    requestPost:     (id) => dispatch(requestPost(id))
+  requestPost:     (id) => dispatch(requestPost(id)),
+  requestUpdatePost: (post) => dispatch(requestUpdatePost(post))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostForm);

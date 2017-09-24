@@ -1,9 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 
 class PostsDetail extends React.Component {
-
 
   timeConverter(UNIX_timestamp){
   let a = new Date(UNIX_timestamp);
@@ -29,7 +26,7 @@ class PostsDetail extends React.Component {
           <h5>Author:{post.author}</h5>
           <h5>{this.timeConverter(this.props.post.timestamp)}</h5>
           <p>Body:{post.body}</p>
-        
+
         </div>
       </div>
     );

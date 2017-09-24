@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPost, deletePost } from '../utils/api';
+import { deletePost } from '../utils/api';
 import { requestPost } from '../actions/posts_actions';
 
 class PostsShow extends React.Component {
@@ -34,16 +34,14 @@ onDeletePost(e) {
 }
 
 render (){
-  console.log('Props',this.props);
-  const singlePost = this.props.posts.byId;
 
-  console.log('singlepost',singlePost);
+  const singlePost = this.props.posts.byId[this.props.match.params.id];
 
+  if (!singlePost) return null;
 
   return (
     <div>
       <div>
-
         <h3>Title:{singlePost.title}</h3>
         <h5>Category: {singlePost.category}</h5>
         <h5>Author:{singlePost.author}</h5>
@@ -56,6 +54,8 @@ render (){
  }
 }
 
+
+
 const mapStateToProps = ({posts}) => ({
   posts
 });
@@ -65,5 +65,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsShow);
-
-// export default PostsShow;

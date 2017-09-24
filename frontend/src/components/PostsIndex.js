@@ -40,7 +40,7 @@ class PostsIndex extends React.Component {
   }
 // must have buttons to filter through categories
   render () {
-    // console.log('Postsindex', this.props);
+    console.log('Postsindex', this.props);
     return (
       <div>
         <Link className='form-link' to='/form' >Create New Post</Link>

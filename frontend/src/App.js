@@ -28,21 +28,12 @@ class App extends Component {
   //   });
   // }
 
-
-  // handleFetchPost(id) {
-  //   console.log(id);
-  //   return (
-  //     this.state.posts.byId[id]
-  //   )
-  // }
-
-
   render() {
-    // console.log(this.state);
+
     return (
       <div className="App">
         <Switch>
-          <Route exact path='/' render={() => (<PostsIndex posts={this.state.posts} />)}/>
+          <Route exact path='/' component={PostsIndex}/>
           <Route exact path='/posts/:id' component={PostsShow}/>
           <Route exact path='/posts/:id/edit' component={PostForm}/>
           <Route exact path='/form' component={PostNew}/>
@@ -52,8 +43,6 @@ class App extends Component {
     );
   }
 }
-// <Route exact path='/form/:id' render={(post) => (<PostForm post={post} />)}/>
+
 
 export default App;
-
-// post={this.handleFetchPost(id)}
