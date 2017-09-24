@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 // import { fetchPosts, fetchCategories} from '../utils/api';
 import { requestPosts } from '../actions/posts_actions';
+import { requestCategories } from '../actions/category_actions';
 
 class PostsIndex extends React.Component {
   state = {
@@ -21,7 +22,8 @@ class PostsIndex extends React.Component {
 
   componentDidMount() {
     // fetchPosts().then((data) => { this.setState({ posts: {byId: data} }) });
-    // fetchCategories().then((data) => { this.setState({ categories: data });
+    // fetchCategories().then((data) => { this.setState({ categories: data })});
+    this.props.requestCategories().then((data) => { this.setState({ categories: data })});
     this.props.requestPosts().then((data) => { this.setState({ posts: {byId: data} }) });
   };
 
@@ -41,6 +43,7 @@ class PostsIndex extends React.Component {
 // must have buttons to filter through categories
   render () {
     console.log('Postsindex', this.props);
+    console.log('Posts Index state', this.state);
     return (
       <div>
         <Link className='form-link' to='/form' >Create New Post</Link>
@@ -52,12 +55,15 @@ class PostsIndex extends React.Component {
   }
 }
 
-const mapStateToProps = ({posts}) => ({
-  posts
+const mapStateToProps = (state) => ({
+  posts: state.posts,
+  categories: state.categories
 });
 
 const mapDispatchToProps = dispatch => ({
-    requestPosts:     () => dispatch(requestPosts())
+    requestPosts:     () => dispatch(requestPosts()),
+    requestCategories: () => dispatch(requestCategories())
+
 
 });
 

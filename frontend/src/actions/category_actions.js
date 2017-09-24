@@ -9,7 +9,7 @@ export const receiveCategories = (categories) => ({
 });
 
 
-export const reuqestCategories = () => dispatch => {
+export const requestCategories = () => dispatch => {
   return fetchCategories().then(categories => {
     dispatch(receiveCategories(categories));
   });
