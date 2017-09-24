@@ -1,23 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { requestUpdatePost, requestPost } from '../actions/posts_actions';
+import { fetchPost } from '../utils/api';
 import { connect } from 'react-redux';
 const  { DOM: { select } } = React;
 
 
 class PostForm extends React.Component {
   state = {
-    posts: {
-      byId:{},
-      allIds:[]
-    }
+    // posts: {
+    //   byId:{},
+    //   allIds:[]
+    // }
   }
 
 componentDidMount() {
-  this.props.requestPost(this.props.match.params.id)
-    .then((data) => { this.setState({ posts: {byId: data} }); });
-  // requestPost(this.props.match.params.id)
-    // .then((post) => { this.setState(post);} );
+  fetchPost(this.props.match.params.id).then((post) => { this.setState(post);} );
+  // this.props.requestPost(this.props.match.params.id)
+  //   .then((data) => { this.setState({ posts: {byId: data} }); });
+
 }
 
 handleSubmit(e) {
@@ -34,8 +35,8 @@ update(field) {
   render() {
 
     console.log('Props',this.props);
-    const singlePost = this.props.posts.byId[this.props.match.params.id];
-
+    // const singlePost = this.props.posts.byId[this.props.match.params.id];
+    const singlePost = this.state
     if (!singlePost) return null;
     console.log('SinglePost',singlePost);
     console.log('State',this.state);
@@ -73,7 +74,7 @@ update(field) {
 // });
 
 const mapStateToProps = (state, ownProps) => ({
-  posts: state.posts
+  posts: state
 
 });
 

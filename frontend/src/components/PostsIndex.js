@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostsDetail from './PostsDetail';
+import PostCategory from './PostCategory';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 // import { fetchPosts, fetchCategories} from '../utils/api';
@@ -40,13 +41,31 @@ class PostsIndex extends React.Component {
       );
     });
   }
+
+  renderCategoryButtons() {
+
+    return _.map(this.props.categories.categories, cat => {
+      return (
+
+         <Link to={`/${cat.path}`} className='post-detail-link' key={cat.name}>
+           <ul className='post-info'>
+             <li>{cat.name}</li>
+           </ul>
+         </Link>
+
+      );
+    });
+  }
 // must have buttons to filter through categories
   render () {
-    console.log('Postsindex', this.props);
-    console.log('Posts Index state', this.state);
+    // console.log('Postsindex categories', this.props);
+    // console.log('Posts Index state', this.state);
     return (
-      <div>
+      <div className='postsIndex'>
         <Link className='form-link' to='/form' >Create New Post</Link>
+        <ul className="list-group">
+          {this.renderCategoryButtons()}
+        </ul>
         <ul className='posts-list'>
           {this.renderPosts()}
         </ul>
@@ -55,9 +74,9 @@ class PostsIndex extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  posts: state.posts,
-  categories: state.categories
+const mapStateToProps = ({posts, categories}) => ({
+  posts,
+  categories
 });
 
 const mapDispatchToProps = dispatch => ({
