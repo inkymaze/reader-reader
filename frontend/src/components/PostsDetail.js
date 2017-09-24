@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 class PostsDetail extends React.Component {
 
   timeConverter(UNIX_timestamp){
@@ -21,11 +21,16 @@ class PostsDetail extends React.Component {
     return (
       <div>
         <div>
+          <Link to={`/posts/${post.id}`} className='post-detail-link' key={post.id}>
           <h3>Title:{post.title}</h3>
           <h5>Category: {post.category}</h5>
           <h5>Author:{post.author}</h5>
           <h5>{this.timeConverter(this.props.post.timestamp)}</h5>
           <p>Body:{post.body}</p>
+          </Link>
+          <h5>Votes:{post.voteScore}</h5>
+          <button onClick={this.upVote}>Upvote</button>
+          <button onClick={this.downVote}>Downvote</button>
 
         </div>
       </div>

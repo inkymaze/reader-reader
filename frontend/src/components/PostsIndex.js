@@ -30,14 +30,14 @@ class PostsIndex extends React.Component {
 
   renderPosts() {
     return _.map(this.props.posts.byId, post => {
+
       return (
 
-         <Link to={`/posts/${post.id}`} className='post-detail-link' key={post.id}>
+
            <ul className='post-info'>
              <PostsDetail post={post} key={post.id}/>
            </ul>
-         </Link>
-
+         
       );
     });
   }
