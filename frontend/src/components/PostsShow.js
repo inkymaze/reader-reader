@@ -27,6 +27,19 @@ componentDidMount() {
   // fetchPost(this.props.match.params.id).then((data) => { this.setState({ post: data} )} );
 }
 
+updateVoteScore(id, vote) {
+  this.props.requestVotePost(id, vote);
+}
+
+componentWillReceiveProps(nextProps) {
+    if (this.props.posts !== nextProps.posts)
+     {
+      this.props.requestPost(nextProps.match.params.id);
+    }
+  }
+
+
+
 onDeletePost(e) {
   e.preventDefault();
   this.props.requestDeletePost(this.props.posts.byId[this.props.match.params.id])
@@ -47,8 +60,8 @@ render (){
         <h5>Author:{singlePost.author}</h5>
         <h5>Score:{singlePost.voteScore}</h5>
         <p>Body:{singlePost.body}</p>
-          <button onClick={() => {this.props.requestVotePost(singlePost.id, 'upVote');}}>Upvote</button>
-          <button onClick={() => {this.props.requestVotePost(singlePost.id, 'downVote');}}>Downvote</button>
+          <button onClick={() => {this.updateVoteScore(singlePost.id, 'upVote');}}>Upvote</button>
+          <button onClick={() => {this.updateVoteScore(singlePost.id, 'downVote');}}>Downvote</button>
         <Link to={`/posts/${singlePost.id}/edit`}>Edit Post</Link>
         <button onClick={(e) => (this.onDeletePost(e))}>Delete Post</button>
       </div>
