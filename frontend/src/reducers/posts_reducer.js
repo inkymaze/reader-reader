@@ -41,10 +41,10 @@ const PostsReducer = (state = initialState, action) => {
       // nextState.allIds = allIds;
       //   return nextState;
     case VOTE_POST:
-    return {
-      ...state, [action.post.id]: action.post,
-      };
+      const nextState = merge({},state);
+      nextState.byId[action.post.id] = action.post;
 
+      return nextState;
     default:
       return state;
   }

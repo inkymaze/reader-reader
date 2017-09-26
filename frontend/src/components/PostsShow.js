@@ -31,12 +31,13 @@ updateVoteScore(id, vote) {
   this.props.requestVotePost(id, vote);
 }
 
-componentWillReceiveProps(nextProps) {
-    if (this.props.posts !== nextProps.posts)
-     {
-      this.props.requestPost(nextProps.match.params.id);
-    }
-  }
+// componentWillReceiveProps(nextProps) {
+//     if (this.props.posts !== nextProps.posts)
+//      {
+//       this.props.requestPost(nextProps.match.params.id);
+//     }
+//   }
+
 
 
 

@@ -33,7 +33,7 @@ class PostCategory extends React.Component {
       if (post.category === category) {
       return (
 
-         <Link to={`/posts/${post.id}`} className='post-detail-link' key={post.id}>
+         <Link to={`/${post.category}/${post.id}`} className='post-detail-link' key={post.id}>
            <ul className='post-info'>
              <PostsDetail post={post} key={post.id}/>
            </ul>

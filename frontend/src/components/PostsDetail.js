@@ -19,11 +19,12 @@ class PostsDetail extends React.Component {
   render (){
 
     const {post} = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <div>
+
         <div>
-          <Link to={`/posts/${post.id}`} className='post-detail-link' key={post.id}>
+          <Link to={`/${post.category}/${post.id}`} className='post-detail-link' key={post.id}>
           <h3>Title:{post.title}</h3>
           <h5>Category: {post.category}</h5>
           <h5>Author:{post.author}</h5>
@@ -31,9 +32,6 @@ class PostsDetail extends React.Component {
           <p>Body:{post.body}</p>
           </Link>
           <h5>Score:{post.voteScore}</h5>
-
-
-
         </div>
       </div>
     );

@@ -2,9 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PostsDetail from './PostsDetail';
 import { Link } from 'react-router-dom';
-import sortBy from 'sort-by';
 import _ from 'lodash';
-// import { fetchPosts, fetchCategories} from '../utils/api';
 import { requestPosts } from '../actions/posts_actions';
 import { requestCategories } from '../actions/category_actions';
 
@@ -37,7 +35,7 @@ class PostsIndex extends React.Component {
     return _.map(sortedPosts, post => {
 
       return (
-           <ul className='post-info'>
+           <ul className='post-info' key={post.id}>
              <PostsDetail post={post} key={post.id}/>
            </ul>
       );
