@@ -15,6 +15,7 @@ class PostForm extends React.Component {
   }
 
 componentDidMount() {
+  // note this is just an API call 
   fetchPost(this.props.match.params.id).then((post) => { this.setState(post);} );
   // this.props.requestPost(this.props.match.params.id)
   //   .then((data) => { this.setState({ posts: {byId: data} }); });
@@ -30,6 +31,16 @@ handleSubmit(e) {
 
 update(field) {
   return e => this.setState({ [field]: e.target.value });
+//   return e => this.setState((state) => {
+//   const post = state[this.props.match.params.id];
+//   const updatedValue = e.target.value;
+//   return {
+//     [this.props.match.params.id]: {
+//       ...post,
+//       [field]: updatedValue
+//     }
+//   };
+// });
 }
 
   render() {
@@ -73,7 +84,7 @@ update(field) {
 //
 // });
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   posts: state
 
 });

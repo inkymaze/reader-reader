@@ -10,6 +10,7 @@ class PostCategory extends React.Component {
   componentDidMount() {
     const category = this.props.match.params.category;
     if (category) {
+      // this may be too expensive and will need to be a filtered action
       this.props.requestPosts();
     }
 
@@ -29,7 +30,6 @@ class PostCategory extends React.Component {
     const category = this.props.match.params.category;
 
     return _.map(this.props.posts.byId, post => {
-      console.log('in RenderCategoryPosts', post.category);
       if (post.category === category) {
       return (
 
@@ -48,8 +48,9 @@ class PostCategory extends React.Component {
   render () {
     return (
       <div>
-
+        <ul>
           {this.renderCategoryPosts()}
+        </ul>
       </div>
     );
   }

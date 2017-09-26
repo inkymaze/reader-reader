@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { deletePost } from '../utils/api';
-import { requestPost } from '../actions/posts_actions';
+// import { deletePost } from '../utils/api';
+import { requestPost, requestDeletePost } from '../actions/posts_actions';
 
 class PostsShow extends React.Component {
   // state = {
@@ -29,8 +29,8 @@ componentDidMount() {
 
 onDeletePost(e) {
   e.preventDefault();
-  deletePost(this.state.post)
-  .then(() => this.props.history.push('/'));;
+  this.props.requestDeletePost(this.props.posts.byId[this.props.match.params.id])
+  .then(() => this.props.history.push('/'));
 }
 
 render (){
@@ -38,7 +38,7 @@ render (){
   const singlePost = this.props.posts.byId[this.props.match.params.id];
 
   if (!singlePost) return null;
-
+  console.log(this.props);
   return (
     <div>
       <div>
@@ -61,7 +61,8 @@ const mapStateToProps = ({posts}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    requestPost:     (id) => dispatch(requestPost(id))
+    requestPost:     (id) => dispatch(requestPost(id)),
+    requestDeletePost: (post) => dispatch(requestDeletePost(post))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsShow);

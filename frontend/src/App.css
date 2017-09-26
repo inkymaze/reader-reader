@@ -78,3 +78,14 @@ margin: 50px;
   display: flex;
     justify-content: flex-start
 }
+
+.cat-list {
+  display: flex;
+justify-content: flex-start;
+flex-direction: column;
+border: 1px solid gray;
+margin: 116px 0;
+font-family: comic;
+color: gray;
+padding: 0;
+}

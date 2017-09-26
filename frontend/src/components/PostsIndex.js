@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostsDetail from './PostsDetail';
-import PostCategory from './PostCategory';
 import { Link } from 'react-router-dom';
+import sortBy from 'sort-by';
 import _ from 'lodash';
 // import { fetchPosts, fetchCategories} from '../utils/api';
 import { requestPosts } from '../actions/posts_actions';
@@ -18,7 +18,8 @@ class PostsIndex extends React.Component {
     comments: {
       byId:{},
       allIds:[]
-    }
+    },
+
   }
 
   componentDidMount() {
@@ -29,15 +30,14 @@ class PostsIndex extends React.Component {
   };
 
   renderPosts() {
+    // let order = this.state.order
+    // let sortedPosts = this.props.posts.byId.sort(sortBy('byId.order'))
     return _.map(this.props.posts.byId, post => {
 
       return (
-
-
            <ul className='post-info'>
              <PostsDetail post={post} key={post.id}/>
            </ul>
-         
       );
     });
   }
@@ -56,19 +56,29 @@ class PostsIndex extends React.Component {
       );
     });
   }
+
+  // sortPosts(field) {
+  //   this.setState({order: field })
+  // }
 // must have buttons to filter through categories
   render () {
-    // console.log('Postsindex categories', this.props);
+    // console.log('Postsindex ', this.props);
     // console.log('Posts Index state', this.state);
+    if (!this.props.posts) return null;
+    console.log('Posts',this.props.posts[0]);
     return (
       <div className='postsIndex'>
         <Link className='form-link' to='/form' >Create New Post</Link>
-        <ul className="list-group">
-          {this.renderCategoryButtons()}
-        </ul>
+        <div className='cat-list'>
+          <h3>Filter By Category</h3>
+          <ul className="cateogry-group">
+            {this.renderCategoryButtons()}
+          </ul>
+        </div>
         <ul className='posts-list'>
           {this.renderPosts()}
         </ul>
+
       </div>
     );
   }

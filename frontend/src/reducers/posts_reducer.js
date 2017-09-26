@@ -1,5 +1,6 @@
 import merge from 'lodash/merge';
-import {RECEIVE_POSTS, RECEIVE_POST } from '../actions/posts_actions';
+import {RECEIVE_POSTS, RECEIVE_POST, DELETE_POST } from '../actions/posts_actions';
+import _ from 'lodash';
 
 const initialState = {
   byId: {},
@@ -24,11 +25,13 @@ const PostsReducer = (state = initialState, action) => {
 
     case RECEIVE_POST:
       allIds.unshift(action.post.id);
-      
+
       return merge({},
              state,
              { byId: {[action.post.id]: action.post} },
               { allIds });
+    case DELETE_POST:
+      return _.omit(state, action.post);
       // const nextState = merge({},state);
       // action.post.forEach(post => {
       //   byId[post.id] = post;
