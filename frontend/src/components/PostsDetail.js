@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { requestVotePost } from '../actions/posts_actions';
+
 
 class PostsDetail extends React.Component {
 
@@ -32,8 +32,7 @@ class PostsDetail extends React.Component {
           </Link>
           <h5>Score:{post.voteScore}</h5>
 
-          <button onClick={() => {requestVotePost(post.id, 'upVote');}}>Upvote</button>
-          <button onClick={() => {requestVotePost(post.id, 'downVote');}}>Downvote</button>
+
 
         </div>
       </div>

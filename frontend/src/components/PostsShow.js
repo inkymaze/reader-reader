@@ -57,11 +57,14 @@ render (){
       <div>
         <h3>Title:{singlePost.title}</h3>
         <h5>Category: {singlePost.category}</h5>
+        <p>Body:{singlePost.body}</p>
         <h5>Author:{singlePost.author}</h5>
         <h5>Score:{singlePost.voteScore}</h5>
-        <p>Body:{singlePost.body}</p>
+
+        <div className='vote-buttons'>
           <button onClick={() => {this.updateVoteScore(singlePost.id, 'upVote');}}>Upvote</button>
           <button onClick={() => {this.updateVoteScore(singlePost.id, 'downVote');}}>Downvote</button>
+        </div>
         <Link to={`/posts/${singlePost.id}/edit`}>Edit Post</Link>
         <button onClick={(e) => (this.onDeletePost(e))}>Delete Post</button>
       </div>

@@ -79,15 +79,15 @@ margin: 50px;
     justify-content: flex-start
 }
 
-.cat-list {
+.filter-list {
   display: flex;
-justify-content: flex-start;
-flex-direction: column;
-border: 1px solid gray;
-margin: 116px 0;
-font-family: comic;
-color: gray;
-padding: 0;
+  justify-content: flex-start;
+  flex-direction: column;
+  border: 1px solid gray;
+  margin: 116px 0;
+  font-family: comic;
+  color: gray;
+  padding: 0;
 }
 
 .header-link {
@@ -98,4 +98,10 @@ padding: 0;
 
 .homepageHeader {
   border-bottom: 1px solid;
+}
+
+.vote-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
 }
