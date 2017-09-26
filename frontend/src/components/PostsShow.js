@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { deletePost } from '../utils/api';
+// import { deletePost } from '../utils/post_api';
 import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
 
 class PostsShow extends React.Component {
@@ -55,6 +55,9 @@ render (){
   console.log(this.props);
   return (
     <div>
+      <div>
+        <button >Add Comment</button>
+      </div>
       <div>
         <h3>Title:{singlePost.title}</h3>
         <h5>Category: {singlePost.category}</h5>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import randomize from 'randomatic';
-import { createPost } from '../utils/api';
+import { createPost } from '../utils/post_api';
 
 class PostsNew extends Component {
   state = {

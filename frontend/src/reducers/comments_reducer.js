@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import {RECEIVE_COMMENTS, RECEIVE_COMMENT, DELETE_COMMENT} from '../actions/comments_actions';
+import {RECEIVE_COMMENTS, RECEIVE_COMMENT, DELETE_COMMENT, VOTE_COMMENT} from '../actions/comments_actions';
 import _ from 'lodash';
 
 const initialState = {
@@ -32,8 +32,11 @@ const CommentsReducer = (state = initialState, action) => {
 
     case DELETE_COMMENT:
       // byId[action.comment.id] = action.comment;
-    // not sure if omit will work in this case
-       return _.omit(state, byId[action.comment.id] );
+       return _.omit(state, action.comment);
+    case VOTE_COMMENT:
+      nextState = merge({},state);
+      nextState.byId[action.post.id] = action.post;
+      return nextState;
     default:
       return state;
 

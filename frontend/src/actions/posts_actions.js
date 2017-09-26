@@ -1,4 +1,4 @@
-import { fetchPosts, fetchPost, updatePost, deletePost, votePost } from '../utils/api';
+import { fetchPosts, fetchPost, updatePost, deletePost, votePost } from '../utils/post_api';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";

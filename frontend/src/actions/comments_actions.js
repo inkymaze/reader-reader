@@ -1,6 +1,9 @@
+import { fetchComments, fetchComment, updateComment, deleteComment, voteComment } from '../utils/post_api';
+
 export const RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
+export const VOTE_COMMENT = "VOTE_COMMENT";
 
 
 
@@ -14,7 +17,42 @@ export const receiveComment = (comment) => ({
   comment
 });
 
-export const deleteComment = (comment) => ({
+export const receiveDeleteComment = (comment) => ({
   type: DELETE_COMMENT,
   comment
 });
+
+export const receiveVoteComment = (comment) => ({
+  type: VOTE_COMMENT,
+  comment
+});
+
+export const requestComments = () => dispatch => {
+  return fetchComments().then( comments => {
+      dispatch(receiveComments(comments));
+    });
+};
+
+export const requestComment = (id) => dispatch => {
+  return fetchComment(id).then( comment => {
+      dispatch(receiveComment(comment));
+    });
+};
+
+export const requestUpdateComment = (comment) => dispatch => {
+  return updateComment(comment).then( commentRes => {
+      dispatch(receiveComment(commentRes));
+    });
+};
+
+export const requestDeleteComment = (comment) => dispatch => {
+  return deleteComment(comment).then( commentRes => {
+      dispatch(receiveDeleteComment(commentRes));
+    });
+};
+
+export const requestVoteComment = (id, vote) => dispatch => {
+  return voteComment(id, vote).then( commentRes => {
+      dispatch(receiveVoteComment(commentRes));
+    });
+};

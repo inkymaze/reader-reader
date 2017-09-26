@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { requestUpdatePost, requestPost } from '../actions/posts_actions';
-import { fetchPost } from '../utils/api';
+import { fetchPost } from '../utils/post_api';
 import { connect } from 'react-redux';
 const  { DOM: { select } } = React;
 

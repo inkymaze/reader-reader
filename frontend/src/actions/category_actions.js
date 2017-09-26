@@ -1,4 +1,4 @@
-import { fetchCategories } from '../utils/api';
+import { fetchCategories } from '../utils/post_api';
 
 export const RECEIVE_CATEGORIES = "RECEIVE_CATEGORIES";
 
