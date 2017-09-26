@@ -5,6 +5,7 @@ import PostForm from './components/PostForm';
 import PostNew from './components/PostNew';
 import PostsShow from './components/PostsShow';
 import PostCategory from './components/PostCategory';
+import Header from './components/Header';
 // import { fetchPosts, fetchCategories} from './utils/api';
 
 import './App.css';
@@ -31,6 +32,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
+        <Header />
         <Switch>
           <Route exact path='/' component={PostsIndex}/>
           <Route exact path='/form' component={PostNew}/>

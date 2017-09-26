@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { requestVotePost } from '../actions/posts_actions';
+
 class PostsDetail extends React.Component {
 
   timeConverter(UNIX_timestamp){
@@ -28,9 +30,10 @@ class PostsDetail extends React.Component {
           <h5>{this.timeConverter(this.props.post.timestamp)}</h5>
           <p>Body:{post.body}</p>
           </Link>
-          <h5>Votes:{post.voteScore}</h5>
-          <button onClick={this.upVote}>Upvote</button>
-          <button onClick={this.downVote}>Downvote</button>
+          <h5>Score:{post.voteScore}</h5>
+
+          <button onClick={() => {requestVotePost(post.id, 'upVote');}}>Upvote</button>
+          <button onClick={() => {requestVotePost(post.id, 'downVote');}}>Downvote</button>
 
         </div>
       </div>

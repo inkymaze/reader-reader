@@ -1,10 +1,10 @@
-import { fetchPosts, fetchPost, updatePost, deletePost } from '../utils/api';
-
-
+import { fetchPosts, fetchPost, updatePost, deletePost, votePost } from '../utils/api';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
 export const DELETE_POST = "DELETE_POST";
+export const VOTE_POST = "VOTE_POST";
+
 
 
 export const receivePosts = (posts) => ({
@@ -19,6 +19,11 @@ export const receivePost = (post) => ({
 
 export const receiveDeletePost = (post) => ({
   type: DELETE_POST,
+  post
+});
+
+export const receiveVotePost = (post) => ({
+  type: VOTE_POST,
   post
 });
 
@@ -44,5 +49,11 @@ export const requestUpdatePost = (post) => dispatch => {
 export const requestDeletePost = (post) => dispatch => {
   return deletePost(post).then( postRes => {
       dispatch(receiveDeletePost(postRes));
+    });
+};
+
+export const requestVotePost = (id, vote) => dispatch => {
+  return votePost(id, vote).then( postRes => {
+      dispatch(receiveVotePost(postRes));
     });
 };

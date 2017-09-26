@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PostsDetail from './PostsDetail';
 import { Link } from 'react-router-dom';
-import sortBy from 'sort-by';
+// import sortBy from 'sort-by';
 import _ from 'lodash';
 // import { fetchPosts, fetchCategories} from '../utils/api';
 import { requestPosts } from '../actions/posts_actions';
@@ -65,7 +65,7 @@ class PostsIndex extends React.Component {
     // console.log('Postsindex ', this.props);
     // console.log('Posts Index state', this.state);
     if (!this.props.posts) return null;
-    console.log('Posts',this.props.posts[0]);
+    console.log('Posts idx',this.props.posts);
     return (
       <div className='postsIndex'>
         <Link className='form-link' to='/form' >Create New Post</Link>

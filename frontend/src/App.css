@@ -89,3 +89,13 @@ font-family: comic;
 color: gray;
 padding: 0;
 }
+
+.header-link {
+  display: flex;
+  justify-content: flex-end;
+  margin: 25px;
+}
+
+.homepageHeader {
+  border-bottom: 1px solid;
+}
