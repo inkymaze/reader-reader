@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import CommentNew from './CommentNew';
+// import CommentNew from './CommentNew';
 // import { deletePost } from '../utils/post_api';
 import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
+import { requestComments } from '../actions/comments_actions';
 
 class PostsShow extends React.Component {
   // state = {
@@ -50,7 +51,7 @@ render (){
   const singlePost = this.props.posts.byId[this.props.match.params.id];
 
   if (!singlePost) return null;
-  console.log(this.props.postId);
+  console.log(this.props);
   return (
     <div>
       <div>
@@ -86,7 +87,8 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => ({
     requestPost:     (id) => dispatch(requestPost(id)),
     requestDeletePost: (post) => dispatch(requestDeletePost(post)),
-    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote))
+    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
+    requestComments: () => dispatch(requestComments())
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsShow);

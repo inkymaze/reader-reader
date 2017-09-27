@@ -22,7 +22,7 @@ export const updateComment = (comment) =>
     .then((res) => res.json());
 
 export const createComment = (comment) =>
-  fetch('http://localhost:3001/posts/', {
+  fetch('http://localhost:3001/comments/', {
    method: 'POST',
    headers: {
      'Accept': 'application/json',

@@ -10,21 +10,22 @@ class CommentNew extends Component {
     timestamp: Date.now(),
     body: "",
     author: "",
-    postId: "",
+    parentId: "",
     voteScore: 0,
-    deleted: 'False'
+    deleted: 'False',
+    parentDeleted: 'False'
   };
 
   componentDidMount() {
     this.setState({id: randomize('a0', 16),
-       postId: this.props.match.params.postId
+       parentId: this.props.match.params.postId
      })
   }
 
   handleSubmit(e) {
     e.preventDefault();
     this.props.requestCreateComment(this.state)
-      .then(() => this.props.history.push(`/posts/${this.state.postId}`));
+      .then(() => this.props.history.push(`/posts/${this.state.parentId}`));
 
   }
   update(field) {
@@ -39,7 +40,7 @@ class CommentNew extends Component {
         <input
                 type="text"
                 value={this.state.body}
-                placeholder="Post Body"
+                placeholder="Comment Body"
                 onChange={this.update("body")}/>
         <input
                 type="text"
@@ -47,7 +48,7 @@ class CommentNew extends Component {
                 placeholder="Comment Author"
                 onChange={this.update("author")}/>
         <button type='submit' className='submit-btn'>Submit</button>
-        <Link to={`/posts/${this.state.postId}`} className='btn btn-danger'>Cancel</Link>
+        <Link to={`/posts/${this.state.parentId}`} className='btn btn-danger'>Cancel</Link>
       </form>
     )
   }

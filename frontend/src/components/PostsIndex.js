@@ -65,7 +65,7 @@ class PostsIndex extends React.Component {
     // console.log('Postsindex ', this.props);
     // console.log('Posts Index state', this.state);
     if (!this.props.posts) return null;
-    console.log('Posts idx',this.props.posts);
+    console.log('Posts idx',this.props);
     return (
       <div className='postsIndex'>
         <Link className='form-link' to='/form' >Create New Post</Link>
