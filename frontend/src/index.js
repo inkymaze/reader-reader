@@ -5,7 +5,7 @@ import './index.css';
 import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './reducers/root_reducer';
 import { BrowserRouter } from 'react-router-dom';
-import { fetchPosts, fetchPost } from './utils/api';
+import { fetchPosts, fetchPost } from './utils/post_api';
 import {Provider} from 'react-redux';
 import { requestPosts, requestPost, receivePosts, receivePost } from './actions/posts_actions';
 import thunk from 'redux-thunk';

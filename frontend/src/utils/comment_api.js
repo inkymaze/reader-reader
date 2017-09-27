@@ -6,19 +6,13 @@ export function fetchComments (postID) {
 }
 
 export function fetchComment (id) {
-  return fetch(`http://localhost:3001/posts/${id}`,
-    { headers: { 'Authorization': 'inkymaze' }})
-    .then((res) => res.json());
-}
-
-export function fetchCategories () {
-  return fetch("http://localhost:3001/categories",
+  return fetch(`http://localhost:3001/comments/${id}`,
     { headers: { 'Authorization': 'inkymaze' }})
     .then((res) => res.json());
 }
 
 export const updateComment = (comment) =>
-  fetch(`http://localhost:3001/posts/${post.id}`,
+  fetch(`http://localhost:3001/comments/${comment.id}`,
     { headers: { 'Authorization': 'inkymaze',
         'Accept': 'application/json',
         'Content-Type': 'application/json'},
@@ -26,8 +20,6 @@ export const updateComment = (comment) =>
       body: JSON.stringify(comment)
     })
     .then((res) => res.json());
-
-
 
 export const createComment = (comment) =>
   fetch('http://localhost:3001/posts/', {
@@ -41,8 +33,8 @@ export const createComment = (comment) =>
  })
  .then(res => res.json());
 
- export const deletePost = (comment) =>
-   fetch(`http://localhost:3001/posts/${comment.id}`, {
+ export const deleteComment = (comment) =>
+   fetch(`http://localhost:3001/comments/${comment.id}`, {
     method: 'DELETE',
     headers: {
       'Accept': 'application/json',
@@ -53,7 +45,7 @@ export const createComment = (comment) =>
   })
   .then(res => res.json());
 
-  export const votePost = (id, vote) =>
+  export const voteComment = (id, vote) =>
     fetch(`http://localhost:3001/posts/${id}`, {
      method: 'POST',
      headers: {

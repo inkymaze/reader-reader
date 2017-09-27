@@ -9,4 +9,5 @@
     "redux-form": "^7.0.4",
     "redux-thunk": "^2.2.0"
   }
+  
 }
