@@ -38,7 +38,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={PostsIndex}/>
           <Route exact path='/form' component={PostNew}/>
-            <Route exact path='/comments' component={CommentNew}/>
+          <Route exact path='/comments' component={CommentNew}/>
 
           <Route exact path='/posts/:postId/comments/' component={CommentNew}/>
           <Route exact path='/:category' component={PostCategory}/>

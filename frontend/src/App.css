@@ -105,3 +105,29 @@ margin: 50px;
   justify-content: center;
   margin: 15px;
 }
+
+.comment-info {
+  border: 1px solid;
+    width: 40%;
+    text-align: left;
+}
+
+.comment-header {
+  text-align: left;
+margin-left: 5%;
+font-size: 18px;
+}
+
+.new-comment {
+  text-align: left;
+margin-left: 5%;
+}
+
+.add-comment-btn {
+  border: 2px solid;
+    text-decoration: none;
+    background-color: coral;
+    color: white;
+    border-radius: 6px;
+    padding: 7px;
+}

@@ -23,8 +23,10 @@ class PostsIndex extends React.Component {
   componentDidMount() {
     // fetchPosts().then((data) => { this.setState({ posts: {byId: data} }) });
     // fetchCategories().then((data) => { this.setState({ categories: data })});
-    this.props.requestCategories().then((data) => { this.setState({ categories: data })});
-    this.props.requestPosts().then((data) => { this.setState({ posts: {byId: data} }) });
+    this.props.requestCategories()
+    // .then((data) => { this.setState({ categories: data })});
+    this.props.requestPosts()
+    // .then((data) => { this.setState({ posts: {byId: data} }) });
   };
 
   renderPosts() {

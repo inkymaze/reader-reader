@@ -27,8 +27,8 @@ export const receiveVoteComment = (comment) => ({
   comment
 });
 
-export const requestComments = () => dispatch => {
-  return fetchComments().then( comments => {
+export const requestComments = (postId) => dispatch => {
+  return fetchComments(postId).then( comments => {
       dispatch(receiveComments(comments));
     });
 };
