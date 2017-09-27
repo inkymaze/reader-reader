@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import CommentNew from './CommentNew';
 // import { deletePost } from '../utils/post_api';
 import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
 
@@ -38,9 +39,6 @@ updateVoteScore(id, vote) {
 //     }
 //   }
 
-
-
-
 onDeletePost(e) {
   e.preventDefault();
   this.props.requestDeletePost(this.props.posts.byId[this.props.match.params.id])
@@ -52,11 +50,11 @@ render (){
   const singlePost = this.props.posts.byId[this.props.match.params.id];
 
   if (!singlePost) return null;
-  console.log(this.props);
+  console.log(this.props.postId);
   return (
     <div>
       <div>
-        <button >Add Comment</button>
+        <Link to={`/posts/${this.props.postId}/comments`}>Add New Comment</Link>
       </div>
       <div>
         <h3>Title:{singlePost.title}</h3>
@@ -79,8 +77,10 @@ render (){
 
 
 
-const mapStateToProps = ({posts}) => ({
-  posts
+const mapStateToProps = (state, ownProps) => ({
+  posts: state.posts,
+  postId: ownProps.match.params.id
+
 });
 
 const mapDispatchToProps = dispatch => ({

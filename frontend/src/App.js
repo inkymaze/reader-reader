@@ -5,6 +5,7 @@ import PostForm from './components/PostForm';
 import PostNew from './components/PostNew';
 import PostsShow from './components/PostsShow';
 import PostCategory from './components/PostCategory';
+import CommentNew from './components/CommentNew';
 import Header from './components/Header';
 // import { fetchPosts, fetchCategories} from './utils/api';
 
@@ -37,9 +38,11 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={PostsIndex}/>
           <Route exact path='/form' component={PostNew}/>
+          <Route exact path='/posts/:postId/comments/' component={CommentNew}/>
           <Route exact path='/:category' component={PostCategory}/>
           <Route exact path='/:category/:id' component={PostsShow}/>
           <Route exact path='/posts/:id/edit' component={PostForm}/>
+
         </Switch>
       </div>
     );

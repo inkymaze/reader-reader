@@ -54,7 +54,7 @@ class PostsNew extends Component {
                      <option value="udacity">Udacity</option>
                    </select>
         <input
-                type="select"
+                type="text"
                 value={this.state.author}
                 placeholder="Post Author"
                 onChange={this.update("author")}/>
