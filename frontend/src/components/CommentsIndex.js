@@ -44,7 +44,7 @@ class CommentsIndex extends React.Component {
     console.log('comments idx', this.props);
     return (
       <div>
-        <div className='comment-header'>Comments:</div>
+        <div className='comment-header'>Comments ({this.props.comments.allIds.length}):</div>
           <ul className='posts-list'>
             {this.renderComments()}
           </ul>
