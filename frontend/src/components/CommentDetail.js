@@ -22,8 +22,6 @@ class CommentDetail extends React.Component {
 
   handleDeleteComment(e) {
     e.preventDefault();
-
-    // const postRedirect = this.props.comment.parentId;
     this.props.deleteComment(this.props.comment);
   }
 

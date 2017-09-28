@@ -15,12 +15,11 @@ class CommentsIndex extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('nextProps',nextProps);
 
       if (this.props.comments !== nextProps.comments)
        {
 
-        // this.props.requestComments(this.props.postId);
+        // this.nextProps.requestComments(this.props.postId);
       }
     }
 
