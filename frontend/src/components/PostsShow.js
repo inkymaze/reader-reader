@@ -5,7 +5,7 @@ import CommentsIndex from './CommentsIndex';
 
 // import { deletePost } from '../utils/post_api';
 import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
-import { requestComment } from '../actions/comments_actions';
+// import { requestComment } from '../actions/comments_actions';
 import _ from 'lodash';
 
 class PostsShow extends React.Component {
@@ -92,7 +92,7 @@ render (){
         <div>
           <CommentsIndex postId={singlePost.id} />
           <div className='new-comment'>
-            <Link to={`/posts/${this.props.postId}/comments`}
+            <Link to={`/comments/${this.props.postId}/new`}
               className='add-comment-btn'>Add New Comment</Link>
           </div>
         </div>

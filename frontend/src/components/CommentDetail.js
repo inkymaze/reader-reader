@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { requestDeleteComment } from '../actions/comments_actions';
+import { connect } from 'react-redux';
+
 
 
 class CommentDetail extends React.Component {
@@ -16,6 +19,12 @@ class CommentDetail extends React.Component {
   let time = date + '-' + month + ' ' + year + ' at ' + hour + ':' + min + ':' + sec ;
     return time;
   }
+
+  onDeleteComment(e) {
+    e.preventDefault();
+    this.props.requestDeleteComment(this.props.posts.byId[this.props.match.params.id])
+    .then(() => this.props.history.push('/'));
+  }
   render (){
 
     const {comment} = this.props;
@@ -24,20 +33,22 @@ class CommentDetail extends React.Component {
     if (!comment) return null;
     return (
       <div>
-
         <div>
-
-
-
           <h5>Author:{comment.author}</h5>
           <h5>{this.timeConverter(this.props.comment.timestamp)}</h5>
           <p>Body:{comment.body}</p>
-
           <h5>Score:{comment.voteScore}</h5>
+          <Link to={`/comments/${comment.id}/edit`}>Edit Comment</Link>
+          <button onClick={(e) => (this.onDeleteComment(e))}>Delete Comment</button>
         </div>
       </div>
     );
   }
 }
 
-export default CommentDetail;
+const mapDispatchToProps = dispatch => ({
+    requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment))
+});
+
+export default connect(null,mapDispatchToProps)(CommentDetail);
+// export default CommentDetail;

@@ -7,6 +7,7 @@ import PostsShow from './components/PostsShow';
 import PostCategory from './components/PostCategory';
 import CommentNew from './components/CommentNew';
 import Header from './components/Header';
+import CommentForm from './components/CommentForm';
 // import { fetchPosts, fetchCategories} from './utils/api';
 
 import './App.css';
@@ -38,12 +39,12 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={PostsIndex}/>
           <Route exact path='/form' component={PostNew}/>
-          <Route exact path='/comments' component={CommentNew}/>
-
-          <Route exact path='/posts/:postId/comments/' component={CommentNew}/>
+          <Route exact path='/comments/:postId/new' component={CommentNew}/>
           <Route exact path='/:category' component={PostCategory}/>
           <Route exact path='/:category/:id' component={PostsShow}/>
           <Route exact path='/posts/:id/edit' component={PostForm}/>
+          <Route exact path='/comment/:commentId/edit' component={CommentForm}/>
+
 
         </Switch>
       </div>

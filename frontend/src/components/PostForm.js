@@ -8,17 +8,16 @@ const  { DOM: { select } } = React;
 
 class PostForm extends React.Component {
   state = {
-    // posts: {
-    //   byId:{},
-    //   allIds:[]
-    // }
+
   }
 
 componentDidMount() {
-  // note this is just an API call 
-  fetchPost(this.props.match.params.id).then((post) => { this.setState(post);} );
+  // note this is just an API call
+
+  this.props.requestPost(this.props.postId)
+  .then(() => { this.setState(this.props.post);} );
   // this.props.requestPost(this.props.match.params.id)
-  //   .then((data) => { this.setState({ posts: {byId: data} }); });
+    // .then((data) => { this.setState({ posts: {byId: data} }); });
 
 }
 
@@ -30,6 +29,7 @@ handleSubmit(e) {
 }
 
 update(field) {
+
   return e => this.setState({ [field]: e.target.value });
 //   return e => this.setState((state) => {
 //   const post = state[this.props.match.params.id];
@@ -47,8 +47,9 @@ update(field) {
 
     console.log('Props',this.props);
     // const singlePost = this.props.posts.byId[this.props.match.params.id];
-    const singlePost = this.state
+    const singlePost = this.props.post
     if (!singlePost) return null;
+
     console.log('SinglePost',singlePost);
     console.log('State',this.state);
     return(
@@ -84,9 +85,14 @@ update(field) {
 //
 // });
 
-const mapStateToProps = (state) => ({
-  posts: state
-
+// const mapStateToProps = (state) => ({
+//   posts: state.posts
+//
+// });
+const mapStateToProps = (state, ownProps) => ({
+  post: state.posts.byId[ownProps.match.params.id],
+  postId: ownProps.match.params.id,
+  // comments: state.comments
 });
 
 
