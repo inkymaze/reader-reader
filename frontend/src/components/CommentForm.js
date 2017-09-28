@@ -17,14 +17,14 @@ componentDidMount() {
   // fetchPost(this.props.match.params.id).then((comment) => { this.setState(comment);} );
   // this.props.requestPost(this.props.match.params.id)
   //   .then((data) => { this.setState({ comments: {byId: data} }); });
-  this.props.requestComment(this.props.commentId);
-    // .then(() => { this.setState(this.props.comment);});
+  this.props.requestComment(this.props.commentId)
+    .then(() => { this.setState(this.props.comment);});
 }
 
 handleSubmit(e) {
   e.preventDefault();
   this.props.requestUpdateComment(this.state)
-    .then(() => this.props.history.push('/'));
+    .then(() => this.props.history.push(`/posts/${this.state.parentId}`));
 }
 
 update(field) {
@@ -46,11 +46,13 @@ update(field) {
     console.log('COmment edit form',this.props);
     console.log('State',this.state);
     // const singleComment = this.props.comments.byId[this.props.match.params.id];
+    const {comment} = this.props
     const singleComment = this.props.comment
-    if (!singleComment) return null;
-    console.log('SingleComment',singleComment);
+    if (!singleComment) return <div>Loading ....</div>;
+    console.log('SingleComment',comment.author);
 
     return(
+
       <form className='new-comment-form' onSubmit={this.handleSubmit.bind(this)}>
 
         <input  type="text"
@@ -65,6 +67,7 @@ update(field) {
         <button type='submit' className='submit-btn'>Submit</button>
         <Link to='/' className='btn btn-danger'>Cancel</Link>
       </form>
+
     );
   }
 }
@@ -77,7 +80,9 @@ update(field) {
 
 const mapStateToProps = (state, ownProps) => ({
   commentId: ownProps.match.params.commentId,
-  // comment: state.comments.byId[ownProps.match.params.id]
+  comment: state.comments.byId[ownProps.match.params.commentId],
+  comments: state.comments
+
 
 
 });

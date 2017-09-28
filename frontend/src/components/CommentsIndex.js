@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommentDetail from './CommentDetail';
 import _ from 'lodash';
-import { requestComments } from '../actions/comments_actions';
+import { requestComments, requestDeleteComment } from '../actions/comments_actions';
 
 
 
@@ -14,12 +14,24 @@ class CommentsIndex extends React.Component {
     this.props.requestComments(this.props.postId);
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps',nextProps);
+
+      if (this.props.comments !== nextProps.comments)
+       {
+
+        // this.props.requestComments(this.props.postId);
+      }
+    }
+
   renderComments() {
     return _.map(this.props.comments.byId, comment => {
-      if (comment.parentId === this.props.postId) {
+      if (comment.parentId === this.props.postId && comment.deleted === false) {
         return (
           <ul className='comment-info' key={comment.id} >
-            <CommentDetail comment={comment} />
+            <CommentDetail
+              comment={comment}
+              deleteComment={this.props.requestDeleteComment}/>
           </ul>
         );
       }
@@ -45,7 +57,8 @@ const mapStateToProps = ({comments}) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    requestComments: (postId) => dispatch(requestComments(postId))
+    requestComments: (postId) => dispatch(requestComments(postId)),
+    requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment))
 
 });
 

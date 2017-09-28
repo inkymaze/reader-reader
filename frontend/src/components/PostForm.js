@@ -38,7 +38,7 @@ update(field) {
     // const singlePost = this.props.posts.byId[this.props.match.params.id];
     const singlePost = this.props.post;
     if (!singlePost) return null;
-
+    console.log('post from state ',this.state);
     return(
       <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
         <input  type="text"

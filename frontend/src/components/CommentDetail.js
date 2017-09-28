@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { requestDeleteComment } from '../actions/comments_actions';
+// import { requestDeleteComment } from '../actions/comments_actions';
 import { connect } from 'react-redux';
 
 
@@ -20,15 +20,17 @@ class CommentDetail extends React.Component {
     return time;
   }
 
-  onDeleteComment(e) {
+  handleDeleteComment(e) {
     e.preventDefault();
-    this.props.requestDeleteComment(this.props.comment)
-     .then(() => console.log('hi'));
+
+    // const postRedirect = this.props.comment.parentId;
+    this.props.deleteComment(this.props.comment);
   }
 
   render (){
     const {comment} = this.props;
-    console.log('comment props',this.props);
+    console.log('comment detail props',this.props);
+    console.log('comment dets', this.state);
     if (!comment) return null;
 
     return (
@@ -39,18 +41,25 @@ class CommentDetail extends React.Component {
           <p>Body:{comment.body}</p>
           <h5>Score:{comment.voteScore}</h5>
           <Link to={`/comments/${comment.id}/edit`}>Edit Comment</Link>
-          <button onClick={(e) => (this.onDeleteComment(e))}>Delete Comment</button>
+          <button onClick={this.handleDeleteComment.bind(this)}>Delete Comment</button>
         </div>
       </div>
     );
   }
 }
 
+// const mapStateToProps = (state, ownProps) => ({
+//   comments: state.comments,
+//
+//   // postId: comment.match.params.id,
+// });
+//
+//
+//
+//
+// const mapDispatchToProps = dispatch => ({
+//     requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment))
+// });
 
-
-
-const mapDispatchToProps = dispatch => ({
-    requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment))
-});
-
-export default connect(null,mapDispatchToProps)(CommentDetail);
+// export default connect(mapStateToProps,mapDispatchToProps)(CommentDetail);
+export default CommentDetail;
