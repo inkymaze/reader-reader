@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommentDetail from './CommentDetail';
 import _ from 'lodash';
-import { requestComments, requestDeleteComment, requestVoteComment } from '../actions/comments_actions';
+import { requestComments,
+         requestDeleteComment,
+         requestVoteComment } from '../actions/comments_actions';
 
 
 

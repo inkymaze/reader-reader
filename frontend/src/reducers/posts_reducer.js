@@ -30,8 +30,12 @@ const PostsReducer = (state = initialState, action) => {
              state,
              { byId: {[action.post.id]: action.post} },
               { allIds });
-              
+
     case DELETE_POST:
+    console.log('DELETING POST ');
+    console.log(state);
+    console.log(action.post);
+    console.log(_.omit(state, action.post));
       return _.omit(state, action.post);
 
     case VOTE_POST:

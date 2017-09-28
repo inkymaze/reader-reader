@@ -31,8 +31,8 @@ class CommentDetail extends React.Component {
 
   render (){
     const {comment} = this.props;
-    console.log('comment detail props',this.props);
-    console.log('comment dets', this.state);
+    // console.log('comment detail props',this.props);
+    // console.log('comment dets', this.state);
     if (!comment) return null;
 
     return (

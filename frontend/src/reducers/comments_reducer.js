@@ -38,7 +38,26 @@ const CommentsReducer = (state = initialState, action) => {
       //         { allIds });
 
     case DELETE_COMMENT:
-       return _.omit(state, action.comment);
+    // console.log('DELETEING');
+    // console.log(state);
+    // console.log(action.comment);
+    // console.log(_.omit(state, action.comment));
+    //
+    //    return _.omit(state, action.comment);
+      comment = action.comment;
+      nextState = merge({}, state);
+      const deleteId = comment.id;
+      //delete from byId
+      if (nextState.byId[deleteId]) {
+        delete nextState.byId[deleteId];
+        delete nextState.allIds[deleteId];
+      }
+
+      const removeIndex = nextState.allIds.indexOf(deleteId);
+      if (removeIndex >= 0) {
+        nextState.allIds.splice(removeIndex, 1);
+      }
+      return nextState;
 
     case VOTE_COMMENT:
       nextState = merge({},state);

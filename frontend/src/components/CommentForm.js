@@ -44,12 +44,12 @@ update(field) {
   render() {
 
     console.log('COmment edit form',this.props);
-    console.log('State',this.state);
+    
     // const singleComment = this.props.comments.byId[this.props.match.params.id];
     const {comment} = this.props
     const singleComment = this.props.comment
     if (!singleComment) return null;
-    console.log('SingleComment',comment.author);
+
 
     return(
 
