@@ -9,6 +9,8 @@ import { fetchPosts, fetchPost } from './utils/post_api';
 import {Provider} from 'react-redux';
 import { requestPosts, requestPost, receivePosts, receivePost } from './actions/posts_actions';
 import thunk from 'redux-thunk';
+import { requestComment, receiveComment } from './actions/comments_actions';
+import { fetchComment } from './utils/comment_api';
 
 
 
@@ -29,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
   window.receivePost = receivePost;
   window.requestPosts = requestPosts;
   window.requestPost = requestPost;
+  window.receiveComment = receiveComment;
+  window.fetchComment = fetchComment;
+  window.requestComment = requestComment;
   // TEST END ****
   ReactDOM.render(
     <Provider store={store}>

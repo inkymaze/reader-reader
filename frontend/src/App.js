@@ -43,7 +43,7 @@ class App extends Component {
           <Route exact path='/:category' component={PostCategory}/>
           <Route exact path='/:category/:id' component={PostsShow}/>
           <Route exact path='/posts/:id/edit' component={PostForm}/>
-          <Route exact path='/comment/:commentId/edit' component={CommentForm}/>
+          <Route exact path='/comments/:commentId/edit' component={CommentForm}/>
 
 
         </Switch>

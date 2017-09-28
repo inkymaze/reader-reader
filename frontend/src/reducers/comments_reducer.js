@@ -30,13 +30,21 @@ const CommentsReducer = (state = initialState, action) => {
       nextState.allIds.unshift(comment.id);
       return nextState;
 
+      // allIds.unshift(action.comment.id);
+      //
+      // return merge({},
+      //
+      //        { byId: {[action.comment.id]: action.comment} },
+      //         { allIds });
+
     case DELETE_COMMENT:
-      // byId[action.comment.id] = action.comment;
        return _.omit(state, action.comment);
+
     case VOTE_COMMENT:
       nextState = merge({},state);
-      nextState.byId[action.post.id] = action.post;
+      nextState.byId[action.comment.id] = action.comment;
       return nextState;
+
     default:
       return state;
 

@@ -6,7 +6,7 @@ import CommentsIndex from './CommentsIndex';
 // import { deletePost } from '../utils/post_api';
 import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
 // import { requestComment } from '../actions/comments_actions';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 class PostsShow extends React.Component {
   // state = {
@@ -25,7 +25,7 @@ class PostsShow extends React.Component {
   // }
 
 componentDidMount() {
-  this.props.requestPost(this.props.match.params.id);
+  this.props.requestPost(this.props.postId);
   //   .then((data) => { this.setState({ posts: {byId: data} }); });
 
   //   .then((comments) => )
@@ -62,17 +62,17 @@ updateVoteScore(id, vote) {
 
 onDeletePost(e) {
   e.preventDefault();
-  this.props.requestDeletePost(this.props.posts.byId[this.props.match.params.id])
+  this.props.requestDeletePost(this.props.posts.byId[this.props.postId])
   .then(() => this.props.history.push('/'));
 }
 
 render (){
 
-  const singlePost = this.props.posts.byId[this.props.match.params.id];
+  const singlePost = this.props.posts.byId[this.props.postId];
 
   if (!singlePost) return null;
-  console.log('post show props',this.props);
-  console.log('post singlepost',singlePost);
+  // console.log('post show props',this.props);
+  // console.log('post singlepost',singlePost);
   return (
     <div>
 
@@ -107,7 +107,6 @@ render (){
 const mapStateToProps = (state, ownProps) => ({
   posts: state.posts,
   postId: ownProps.match.params.id,
-  // comments: state.comments
 });
 
 

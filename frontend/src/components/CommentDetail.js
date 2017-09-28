@@ -22,20 +22,20 @@ class CommentDetail extends React.Component {
 
   onDeleteComment(e) {
     e.preventDefault();
-    this.props.requestDeleteComment(this.props.posts.byId[this.props.match.params.id])
-    .then(() => this.props.history.push('/'));
+    this.props.requestDeleteComment(this.props.comment)
+     .then(() => console.log('hi'));
   }
+
   render (){
-
     const {comment} = this.props;
-    // console.log(this.props);
-
+    console.log('comment props',this.props);
     if (!comment) return null;
+
     return (
       <div>
         <div>
           <h5>Author:{comment.author}</h5>
-          <h5>{this.timeConverter(this.props.comment.timestamp)}</h5>
+          <h5>{this.timeConverter(comment.timestamp)}</h5>
           <p>Body:{comment.body}</p>
           <h5>Score:{comment.voteScore}</h5>
           <Link to={`/comments/${comment.id}/edit`}>Edit Comment</Link>
@@ -46,9 +46,11 @@ class CommentDetail extends React.Component {
   }
 }
 
+
+
+
 const mapDispatchToProps = dispatch => ({
     requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment))
 });
 
 export default connect(null,mapDispatchToProps)(CommentDetail);
-// export default CommentDetail;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PostsDetail from './PostsDetail';
 import { Link } from 'react-router-dom';
 import CommentDetail from './CommentDetail';
 import _ from 'lodash';
@@ -16,17 +15,14 @@ class CommentsIndex extends React.Component {
   }
 
   renderComments() {
-    // let order = this.state.order
-    // const sortedPosts = _.sortBy(this.props.posts.byId, this.state.sort).reverse();
-    // let sortedPosts = this.props.posts.sort(sortBy('timestamp'))
-    // console.log('sortedPosts', sortedPosts);
     return _.map(this.props.comments.byId, comment => {
-
-      return (
-           <ul className='comment-info' key={comment.id} >
-             <CommentDetail comment={comment} />
-           </ul>
-      );
+      if (comment.parentId === this.props.postId) {
+        return (
+          <ul className='comment-info' key={comment.id} >
+            <CommentDetail comment={comment} />
+          </ul>
+        );
+      }
     });
   }
 
@@ -38,7 +34,6 @@ class CommentsIndex extends React.Component {
           <ul className='posts-list'>
             {this.renderComments()}
           </ul>
-
       </div>
     );
   }

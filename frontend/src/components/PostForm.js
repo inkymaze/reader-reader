@@ -1,35 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { requestUpdatePost, requestPost } from '../actions/posts_actions';
-import { fetchPost } from '../utils/post_api';
+// import { fetchPost } from '../utils/post_api';
 import { connect } from 'react-redux';
 const  { DOM: { select } } = React;
 
 
 class PostForm extends React.Component {
-  state = {
 
-  }
 
 componentDidMount() {
-  // note this is just an API call
-
   this.props.requestPost(this.props.postId)
   .then(() => { this.setState(this.props.post);} );
-  // this.props.requestPost(this.props.match.params.id)
-    // .then((data) => { this.setState({ posts: {byId: data} }); });
-
 }
 
 handleSubmit(e) {
   e.preventDefault();
-  // this.setState({id = this.props.match.params.id});
   this.props.requestUpdatePost(this.state)
     .then(() => this.props.history.push('/'));
 }
 
 update(field) {
-
   return e => this.setState({ [field]: e.target.value });
 //   return e => this.setState((state) => {
 //   const post = state[this.props.match.params.id];
@@ -44,14 +35,10 @@ update(field) {
 }
 
   render() {
-
-    console.log('Props',this.props);
     // const singlePost = this.props.posts.byId[this.props.match.params.id];
-    const singlePost = this.props.post
+    const singlePost = this.props.post;
     if (!singlePost) return null;
 
-    console.log('SinglePost',singlePost);
-    console.log('State',this.state);
     return(
       <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
         <input  type="text"
@@ -79,22 +66,10 @@ update(field) {
   }
 }
 
-
-// const mapStateToProps = (state, ownProps) => ({
-//   post: state.posts[ownProps.match.params.id]
-//
-// });
-
-// const mapStateToProps = (state) => ({
-//   posts: state.posts
-//
-// });
 const mapStateToProps = (state, ownProps) => ({
   post: state.posts.byId[ownProps.match.params.id],
-  postId: ownProps.match.params.id,
-  // comments: state.comments
+  postId: ownProps.match.params.id
 });
-
 
 const mapDispatchToProps = dispatch => ({
   requestPost:     (id) => dispatch(requestPost(id)),
@@ -102,5 +77,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostForm);
-
-// export default PostForm;

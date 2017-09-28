@@ -30,16 +30,10 @@ const PostsReducer = (state = initialState, action) => {
              state,
              { byId: {[action.post.id]: action.post} },
               { allIds });
+              
     case DELETE_POST:
       return _.omit(state, action.post);
-      // const nextState = merge({},state);
-      // action.post.forEach(post => {
-      //   byId[post.id] = post;
-      //   allIds.unshift(post.id);
-      // });
-      // nextState.byId = byId;
-      // nextState.allIds = allIds;
-      //   return nextState;
+
     case VOTE_POST:
       const nextState = merge({},state);
       nextState.byId[action.post.id] = action.post;

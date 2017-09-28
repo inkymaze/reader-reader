@@ -5,24 +5,24 @@ import { connect } from 'react-redux';
 
 
 class CommentForm extends React.Component {
-  state = {
-    // comments: {
-    //   byId:{},
-    //   allIds:[]
-    // }
-  }
+  // state = {
+  //   // comments: {
+  //   //   byId:{},
+  //   //   allIds:[]
+  //   // }
+  // }
 
 componentDidMount() {
   // note this is just an API call
   // fetchPost(this.props.match.params.id).then((comment) => { this.setState(comment);} );
   // this.props.requestPost(this.props.match.params.id)
   //   .then((data) => { this.setState({ comments: {byId: data} }); });
-
+  this.props.requestComment(this.props.commentId);
+    // .then(() => { this.setState(this.props.comment);});
 }
 
 handleSubmit(e) {
   e.preventDefault();
-  // this.setState({id = this.props.match.params.id});
   this.props.requestUpdateComment(this.state)
     .then(() => this.props.history.push('/'));
 }
@@ -43,12 +43,13 @@ update(field) {
 
   render() {
 
-    console.log('Props',this.props);
+    console.log('COmment edit form',this.props);
+    console.log('State',this.state);
     // const singleComment = this.props.comments.byId[this.props.match.params.id];
-    const singleComment = this.state
+    const singleComment = this.props.comment
     if (!singleComment) return null;
     console.log('SingleComment',singleComment);
-    console.log('State',this.state);
+
     return(
       <form className='new-comment-form' onSubmit={this.handleSubmit.bind(this)}>
 
@@ -74,8 +75,10 @@ update(field) {
 //
 // });
 
-const mapStateToProps = (state) => ({
-  posts: state
+const mapStateToProps = (state, ownProps) => ({
+  commentId: ownProps.match.params.commentId,
+  // comment: state.comments.byId[ownProps.match.params.id]
+
 
 });
 
