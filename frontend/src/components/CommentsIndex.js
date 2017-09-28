@@ -3,25 +3,27 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import CommentDetail from './CommentDetail';
 import _ from 'lodash';
-import { requestComments, requestDeleteComment } from '../actions/comments_actions';
+import { requestComments, requestDeleteComment, requestVoteComment } from '../actions/comments_actions';
 
 
 
 
 class CommentsIndex extends React.Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.requestComments(this.props.postId);
   }
 
-  componentWillReceiveProps(nextProps) {
+  // componentWillReceiveProps(nextProps) {
+  //
+  //     if (this.props.comments !== nextProps.comments)
+  //      {
+  //
+  //       // this.nextProps.requestComments(this.props.postId);
+  //     }
+  //   }
 
-      if (this.props.comments !== nextProps.comments)
-       {
 
-        // this.nextProps.requestComments(this.props.postId);
-      }
-    }
 
   renderComments() {
     return _.map(this.props.comments.byId, comment => {
@@ -30,7 +32,8 @@ class CommentsIndex extends React.Component {
           <ul className='comment-info' key={comment.id} >
             <CommentDetail
               comment={comment}
-              deleteComment={this.props.requestDeleteComment}/>
+              deleteComment={this.props.requestDeleteComment}
+              requestVoteComment={this.props.requestVoteComment}/>
           </ul>
         );
       }
@@ -57,8 +60,8 @@ const mapStateToProps = ({comments}) => ({
 
 const mapDispatchToProps = dispatch => ({
     requestComments: (postId) => dispatch(requestComments(postId)),
-    requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment))
-
+    requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment)),
+    requestVoteComment: (id, vote) => dispatch(requestVoteComment(id, vote)),
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(CommentsIndex);

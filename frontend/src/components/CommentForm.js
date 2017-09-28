@@ -48,7 +48,7 @@ update(field) {
     // const singleComment = this.props.comments.byId[this.props.match.params.id];
     const {comment} = this.props
     const singleComment = this.props.comment
-    if (!singleComment) return <div>Loading ....</div>;
+    if (!singleComment) return null;
     console.log('SingleComment',comment.author);
 
     return(

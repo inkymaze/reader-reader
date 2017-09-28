@@ -25,6 +25,10 @@ class CommentDetail extends React.Component {
     this.props.deleteComment(this.props.comment);
   }
 
+  updateVoteScore(id, vote) {
+    this.props.requestVoteComment(id, vote);
+  }
+
   render (){
     const {comment} = this.props;
     console.log('comment detail props',this.props);
@@ -38,6 +42,8 @@ class CommentDetail extends React.Component {
           <h5>{this.timeConverter(comment.timestamp)}</h5>
           <p>Body:{comment.body}</p>
           <h5>Score:{comment.voteScore}</h5>
+            <button onClick={() => {this.updateVoteScore(comment.id, 'upVote');}}>Upvote</button>
+            <button onClick={() => {this.updateVoteScore(comment.id, 'downVote');}}>Downvote</button>
           <Link to={`/comments/${comment.id}/edit`}>Edit Comment</Link>
           <button onClick={this.handleDeleteComment.bind(this)}>Delete Comment</button>
         </div>

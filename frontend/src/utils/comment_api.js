@@ -46,7 +46,7 @@ export const createComment = (comment) =>
   .then(res => res.json());
 
   export const voteComment = (id, vote) =>
-    fetch(`http://localhost:3001/posts/${id}`, {
+    fetch(`http://localhost:3001/comments/${id}`, {
      method: 'POST',
      headers: {
        'Accept': 'application/json',
