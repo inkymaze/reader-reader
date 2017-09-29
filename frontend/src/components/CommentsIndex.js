@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import CommentDetail from './CommentDetail';
 import _ from 'lodash';
 import { requestComments,
@@ -16,6 +15,7 @@ class CommentsIndex extends React.Component {
   renderComments() {
     return _.map(this.props.comments.byId, comment => {
       if (comment.parentId === this.props.postId && comment.deleted === false) {
+
         return (
           <ul className='comment-info' key={comment.id} >
             <CommentDetail
@@ -28,15 +28,13 @@ class CommentsIndex extends React.Component {
     });
   }
 
-  renderCommentCount() {
-    let filteredPosts = this.props.comments.allIds.filter(comment => comment.parentId === this.props.postId);
-    return filteredPosts.length;
-  }
+
 
   render() {
+    console.log('comments idx', this.props);
     return (
       <div>
-        <div className='comment-header'>Comments ({this.renderCommentCount()}):</div>
+        <div className='comment-header'>Comments:</div>
           <ul className='posts-list'>
             {this.renderComments()}
           </ul>
