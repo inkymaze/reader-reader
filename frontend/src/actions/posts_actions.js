@@ -5,8 +5,6 @@ export const RECEIVE_POST = "RECEIVE_POST";
 export const DELETE_POST = "DELETE_POST";
 export const VOTE_POST = "VOTE_POST";
 
-
-
 export const receivePosts = (posts) => ({
   type: RECEIVE_POSTS,
   posts

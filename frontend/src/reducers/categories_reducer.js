@@ -1,6 +1,5 @@
 import {RECEIVE_CATEGORIES } from '../actions/category_actions';
 
-
 const CategoriesReducer = (state = [], action) => {
   Object.freeze(state);
 

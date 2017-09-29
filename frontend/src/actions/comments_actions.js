@@ -5,8 +5,6 @@ export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 export const VOTE_COMMENT = "VOTE_COMMENT";
 
-
-
 export const receiveComments = (comments) => ({
   type: RECEIVE_COMMENTS,
   comments

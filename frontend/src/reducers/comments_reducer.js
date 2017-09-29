@@ -1,12 +1,13 @@
 import merge from 'lodash/merge';
-import {RECEIVE_COMMENTS, RECEIVE_COMMENT, DELETE_COMMENT, VOTE_COMMENT} from '../actions/comments_actions';
-import _ from 'lodash';
+import {RECEIVE_COMMENTS,
+        RECEIVE_COMMENT,
+        DELETE_COMMENT,
+        VOTE_COMMENT} from '../actions/comments_actions';
 
 const initialState = {
   byId: {},
   allIds: []
 };
-
 
 const CommentsReducer = (state = initialState, action) => {
   Object.freeze(state);
@@ -30,24 +31,10 @@ const CommentsReducer = (state = initialState, action) => {
       nextState.allIds.unshift(comment.id);
       return nextState;
 
-      // allIds.unshift(action.comment.id);
-      //
-      // return merge({},
-      //
-      //        { byId: {[action.comment.id]: action.comment} },
-      //         { allIds });
-
     case DELETE_COMMENT:
-    // console.log('DELETEING');
-    // console.log(state);
-    // console.log(action.comment);
-    // console.log(_.omit(state, action.comment));
-    //
-    //    return _.omit(state, action.comment);
-      comment = action.comment;
       nextState = merge({}, state);
-      const deleteId = comment.id;
-      //delete from byId
+      const deleteId = action.comment.id;
+
       if (nextState.byId[deleteId]) {
         delete nextState.byId[deleteId];
         delete nextState.allIds[deleteId];
@@ -66,7 +53,6 @@ const CommentsReducer = (state = initialState, action) => {
 
     default:
       return state;
-
   }
 };
 

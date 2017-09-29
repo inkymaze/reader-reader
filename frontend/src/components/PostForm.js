@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { requestUpdatePost, requestPost } from '../actions/posts_actions';
-// import { fetchPost } from '../utils/post_api';
 import { connect } from 'react-redux';
 const  { DOM: { select } } = React;
 
 
 class PostForm extends React.Component {
-
 
 componentDidMount() {
   this.props.requestPost(this.props.postId)
@@ -22,43 +20,33 @@ handleSubmit(e) {
 
 update(field) {
   return e => this.setState({ [field]: e.target.value });
-//   return e => this.setState((state) => {
-//   const post = state[this.props.match.params.id];
-//   const updatedValue = e.target.value;
-//   return {
-//     [this.props.match.params.id]: {
-//       ...post,
-//       [field]: updatedValue
-//     }
-//   };
-// });
 }
 
   render() {
-    // const singlePost = this.props.posts.byId[this.props.match.params.id];
     const singlePost = this.props.post;
     if (!singlePost) return null;
-    console.log('post from state ',this.state);
+
     return(
       <form className='new-post-form' onSubmit={this.handleSubmit.bind(this)}>
         <input  type="text"
-                placeholder={singlePost.title}
+          placeholder={singlePost.title}
+          onChange={this.update("title")}/>
 
-                onChange={this.update("title")}/>
         <input  type="text"
-                placeholder={singlePost.body}
-                onChange={this.update("body")}
-              />
+          placeholder={singlePost.body}
+          onChange={this.update("body")}/>
+
         <select onChange={this.update("category")}>
              <option value="none" disabled>Select Category...</option>
              <option value="react">React</option>
              <option value="redux">Redux</option>
              <option value="udacity">Udacity</option>
-           </select>
+          </select>
+
         <input
-                type="text"
-                placeholder={singlePost.author}
-                onChange={this.update("author")}/>
+          type="text"
+          placeholder={singlePost.author}
+          onChange={this.update("author")}/>
         <button type='submit' className='submit-btn'>Submit</button>
         <Link to='/' className='btn btn-danger'>Cancel</Link>
       </form>

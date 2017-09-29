@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 class PostsDetail extends React.Component {
 
   timeConverter(UNIX_timestamp){
@@ -16,13 +15,12 @@ class PostsDetail extends React.Component {
   let time = date + '-' + month + ' ' + year + ' at ' + hour + ':' + min + ':' + sec ;
     return time;
   }
-  render (){
 
+  render (){
     const {post} = this.props;
-    // console.log(this.props);
+
     return (
       <div>
-
         <div>
           <Link to={`/${post.category}/${post.id}`} className='post-detail-link' key={post.id}>
           <h3>Title:{post.title}</h3>

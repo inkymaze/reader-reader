@@ -27,8 +27,6 @@ export const updatePost = (post) =>
     })
     .then((res) => res.json());
 
-
-
 export const createPost = (post) =>
   fetch('http://localhost:3001/posts/', {
    method: 'POST',
@@ -41,26 +39,26 @@ export const createPost = (post) =>
  })
  .then(res => res.json());
 
- export const deletePost = (post) =>
-   fetch(`http://localhost:3001/posts/${post.id}`, {
-    method: 'DELETE',
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': 'inkymaze',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(post)
-  })
-  .then(res => res.json());
+export const deletePost = (post) =>
+ fetch(`http://localhost:3001/posts/${post.id}`, {
+  method: 'DELETE',
+  headers: {
+    'Accept': 'application/json',
+    'Authorization': 'inkymaze',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(post)
+})
+.then(res => res.json());
 
-  export const votePost = (id, vote) =>
-    fetch(`http://localhost:3001/posts/${id}`, {
-     method: 'POST',
-     headers: {
-       'Accept': 'application/json',
-       'Authorization': 'inkymaze',
-       'Content-Type': 'application/json'
-     },
-     body: JSON.stringify({option: vote})
-   })
-   .then(res => res.json());
+export const votePost = (id, vote) =>
+  fetch(`http://localhost:3001/posts/${id}`, {
+   method: 'POST',
+   headers: {
+     'Accept': 'application/json',
+     'Authorization': 'inkymaze',
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify({option: vote})
+ })
+ .then(res => res.json());

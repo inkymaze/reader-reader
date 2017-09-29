@@ -8,7 +8,7 @@ import PostCategory from './components/PostCategory';
 import CommentNew from './components/CommentNew';
 import Header from './components/Header';
 import CommentForm from './components/CommentForm';
-// import { fetchPosts, fetchCategories} from './utils/api';
+
 
 import './App.css';
 
@@ -25,17 +25,13 @@ class App extends Component {
     }
   }
 
-  //   componentDidMount() {
-  //     fetchPosts().then((data) => { this.setState({ posts: {byId: data} }) });
-  //     fetchCategories().then((data) => { this.setState({ categories: data });
-  //   });
-  // }
 
   render() {
     return (
       <div className="App">
 
         <Header />
+        
         <Switch>
           <Route exact path='/' component={PostsIndex}/>
           <Route exact path='/form' component={PostNew}/>
@@ -44,8 +40,6 @@ class App extends Component {
           <Route exact path='/:category/:id' component={PostsShow}/>
           <Route exact path='/posts/:id/edit' component={PostForm}/>
           <Route exact path='/comments/:commentId/edit' component={CommentForm}/>
-
-
         </Switch>
       </div>
     );

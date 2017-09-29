@@ -10,21 +10,9 @@ class PostCategory extends React.Component {
   componentDidMount() {
     const category = this.props.match.params.category;
     if (category) {
-      // this may be too expensive and will need to be a filtered action
       this.props.requestPosts();
     }
-
   }
-
-  // renderCategories() {
-  //   const {categories} = this.props;
-  //   console.log('Category component',this.props);
-  //   return (
-  //   <div>
-  //
-  //   </div>
-  // );
-  // }
 
   renderCategoryPosts() {
     const category = this.props.match.params.category;
@@ -32,21 +20,18 @@ class PostCategory extends React.Component {
     return _.map(this.props.posts.byId, post => {
       if (post.category === category) {
       return (
-
          <Link to={`/${post.category}/${post.id}`} className='post-detail-link' key={post.id}>
            <ul className='post-info'>
              <PostsDetail post={post} key={post.id}/>
            </ul>
          </Link>
-
       );
-    }
+     }
     });
   }
 
 
   render () {
-    console.log(this.props);
     return (
       <div>
         <ul>
@@ -55,7 +40,6 @@ class PostCategory extends React.Component {
       </div>
     );
   }
-
 }
 
 const mapStateToProps = (state) => ({
@@ -64,10 +48,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-
     requestCategories: () => dispatch(requestCategories()),
     requestPosts: () => dispatch(requestPosts())
-
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostCategory);

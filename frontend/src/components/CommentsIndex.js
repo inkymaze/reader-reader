@@ -7,25 +7,11 @@ import { requestComments,
          requestDeleteComment,
          requestVoteComment } from '../actions/comments_actions';
 
-
-
-
 class CommentsIndex extends React.Component {
 
   componentWillMount() {
     this.props.requestComments(this.props.postId);
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //
-  //     if (this.props.comments !== nextProps.comments)
-  //      {
-  //
-  //       // this.nextProps.requestComments(this.props.postId);
-  //     }
-  //   }
-
-
 
   renderComments() {
     return _.map(this.props.comments.byId, comment => {
@@ -42,18 +28,21 @@ class CommentsIndex extends React.Component {
     });
   }
 
+  renderCommentCount() {
+    let filteredPosts = this.props.comments.allIds.filter(comment => comment.parentId === this.props.postId);
+    return filteredPosts.length;
+  }
+
   render() {
-    console.log('comments idx', this.props);
     return (
       <div>
-        <div className='comment-header'>Comments ({this.props.comments.allIds.length}):</div>
+        <div className='comment-header'>Comments ({this.renderCommentCount()}):</div>
           <ul className='posts-list'>
             {this.renderComments()}
           </ul>
       </div>
     );
   }
-
 }
 
 const mapStateToProps = ({comments}) => ({

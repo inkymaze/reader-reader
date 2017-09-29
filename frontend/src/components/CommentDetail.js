@@ -1,9 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { requestDeleteComment } from '../actions/comments_actions';
-import { connect } from 'react-redux';
-
-
 
 class CommentDetail extends React.Component {
 
@@ -31,8 +27,7 @@ class CommentDetail extends React.Component {
 
   render (){
     const {comment} = this.props;
-    // console.log('comment detail props',this.props);
-    // console.log('comment dets', this.state);
+
     if (!comment) return null;
 
     return (
@@ -52,18 +47,5 @@ class CommentDetail extends React.Component {
   }
 }
 
-// const mapStateToProps = (state, ownProps) => ({
-//   comments: state.comments,
-//
-//   // postId: comment.match.params.id,
-// });
-//
-//
-//
-//
-// const mapDispatchToProps = dispatch => ({
-//     requestDeleteComment: (comment) => dispatch(requestDeleteComment(comment))
-// });
 
-// export default connect(mapStateToProps,mapDispatchToProps)(CommentDetail);
 export default CommentDetail;

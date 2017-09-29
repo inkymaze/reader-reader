@@ -33,26 +33,26 @@ export const createComment = (comment) =>
  })
  .then(res => res.json());
 
- export const deleteComment = (comment) =>
-   fetch(`http://localhost:3001/comments/${comment.id}`, {
-    method: 'DELETE',
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': 'inkymaze',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(comment)
-  })
-  .then(res => res.json());
+export const deleteComment = (comment) =>
+ fetch(`http://localhost:3001/comments/${comment.id}`, {
+  method: 'DELETE',
+  headers: {
+    'Accept': 'application/json',
+    'Authorization': 'inkymaze',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(comment)
+})
+.then(res => res.json());
 
-  export const voteComment = (id, vote) =>
-    fetch(`http://localhost:3001/comments/${id}`, {
-     method: 'POST',
-     headers: {
-       'Accept': 'application/json',
-       'Authorization': 'inkymaze',
-       'Content-Type': 'application/json'
-     },
-     body: JSON.stringify({option: vote})
-   })
-   .then(res => res.json());
+export const voteComment = (id, vote) =>
+  fetch(`http://localhost:3001/comments/${id}`, {
+   method: 'POST',
+   headers: {
+     'Accept': 'application/json',
+     'Authorization': 'inkymaze',
+     'Content-Type': 'application/json'
+   },
+   body: JSON.stringify({option: vote})
+ })
+ .then(res => res.json());

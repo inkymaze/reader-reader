@@ -52,20 +52,10 @@ class CommentNew extends Component {
       </form>
     )
   }
-
 }
 
-
-// const mapStateToProps = (state) => ({
-//   posts: state
-//
-// });
-//
-//
 const mapDispatchToProps = dispatch => ({
-  // requestPost:     (id) => dispatch(requestPost(id)),
   requestCreateComment: (comment) => dispatch(requestCreateComment(comment))
 });
-//
+
 export default connect(null,mapDispatchToProps)(CommentNew);
-// export default CommentNew;

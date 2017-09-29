@@ -2,63 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CommentsIndex from './CommentsIndex';
-
-// import { deletePost } from '../utils/post_api';
 import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
-// import { requestComment } from '../actions/comments_actions';
-// import _ from 'lodash';
 
 class PostsShow extends React.Component {
-  // state = {
-  //   post: {}
-  // }
-  // state = {
-  //   categories: [],
-  //   posts: {
-  //     byId:{},
-  //     allIds:[]
-  //   },
-  //   comments: {
-  //     byId:{},
-  //     allIds:[]
-  //   }
-  // }
 
 componentDidMount() {
   this.props.requestPost(this.props.postId);
-  //   .then((data) => { this.setState({ posts: {byId: data} }); });
-
-  //   .then((comments) => )
-    // .then((post) => { this.setState(post: post);} );
-  // fetchPost(this.props.match.params.id).then((data) => { this.setState({ post: data} )} );
 }
 
 updateVoteScore(id, vote) {
   this.props.requestVotePost(id, vote);
 }
-
-// componentWillReceiveProps(nextProps) {
-//     if (this.props.posts !== nextProps.posts)
-//      {
-//       this.props.requestPost(nextProps.match.params.id);
-//     }
-//   }
-
-// renderComments() {
-//   // let order = this.state.order
-//   // const sortedPosts = _.sortBy(this.props.posts.byId, this.state.sort).reverse();
-//   // let sortedPosts = this.props.posts.sort(sortBy('timestamp'))
-//   // // console.log('sortedPosts', sortedPosts);
-//   // return _.map(this.props.comments.byId, comment => {
-//
-//     return (
-//          <ul className='comment-info'>
-//            <CommentsIndex postId={this.props.postId} />
-//          </ul>
-//     );
-//
-// }
-
 
 onDeletePost(e) {
   e.preventDefault();
@@ -67,15 +21,12 @@ onDeletePost(e) {
 }
 
 render (){
-
   const singlePost = this.props.posts.byId[this.props.postId];
 
   if (!singlePost) return null;
-  // console.log('post show props',this.props);
-  // console.log('post singlepost',singlePost);
+
   return (
     <div>
-
       <div>
         <h3>Title:{singlePost.title}</h3>
         <h5>Category: {singlePost.category}</h5>
@@ -102,20 +53,15 @@ render (){
  }
 }
 
-
-
 const mapStateToProps = (state, ownProps) => ({
   posts: state.posts,
   postId: ownProps.match.params.id,
 });
 
-
-
 const mapDispatchToProps = dispatch => ({
-    requestPost:     (id) => dispatch(requestPost(id)),
-    requestDeletePost: (post) => dispatch(requestDeletePost(post)),
-    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
-
+  requestPost:     (id) => dispatch(requestPost(id)),
+  requestDeletePost: (post) => dispatch(requestDeletePost(post)),
+  requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsShow);
