@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
+
 
 class PostsDetail extends React.Component {
 
@@ -16,6 +19,12 @@ class PostsDetail extends React.Component {
     return time;
   }
 
+
+  onDeletePost(e) {
+    e.preventDefault();
+    this.props.requestDeletePost(this.props.post);
+  }
+
   render (){
     const {post} = this.props;
 
@@ -30,10 +39,24 @@ class PostsDetail extends React.Component {
           <p>Body:{post.body}</p>
           </Link>
           <h5>Score:{post.voteScore}</h5>
+            <Link to={`/posts/${post.id}/edit`}>Edit Post</Link>
+            <button onClick={(e) => (this.onDeletePost(e))}>Delete Post</button>
         </div>
       </div>
     );
   }
 }
 
-export default PostsDetail;
+const mapStateToProps = (state, ownProps) => ({
+  post: ownProps.post
+});
+
+const mapDispatchToProps = dispatch => ({
+  requestPost:     (id) => dispatch(requestPost(id)),
+  requestDeletePost: (post) => dispatch(requestDeletePost(post)),
+  requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
+});
+
+export default connect(null,mapDispatchToProps)(PostsDetail);
+
+// export default PostsDetail;

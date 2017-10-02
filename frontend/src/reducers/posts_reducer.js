@@ -35,13 +35,25 @@ const PostsReducer = (state = initialState, action) => {
               { allIds });
 
     case DELETE_POST:
-      return _.omit(state, action.post);
+      nextState = merge({}, state);
+      const deleteId = action.post.id;
+
+      if (nextState.byId[deleteId]) {
+        delete nextState.byId[deleteId];
+        delete nextState.allIds[deleteId];
+      }
+
+      const removeIndex = nextState.allIds.indexOf(deleteId);
+      if (removeIndex >= 0) {
+        nextState.allIds.splice(removeIndex, 1);
+      }
+      return nextState;
 
     case VOTE_POST:
       nextState = merge({},state);
       nextState.byId[action.post.id] = action.post;
       return nextState;
-      
+
     default:
       return state;
   }

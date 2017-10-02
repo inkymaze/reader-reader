@@ -28,8 +28,6 @@ class CommentsIndex extends React.Component {
     });
   }
 
-
-
   render() {
     console.log('comments idx', this.props);
     return (

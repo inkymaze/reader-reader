@@ -16,6 +16,7 @@ updateVoteScore(id, vote) {
 
 onDeletePost(e) {
   e.preventDefault();
+  console.log('posts show delete', this.props.posts.byId[this.props.postId]);
   this.props.requestDeletePost(this.props.posts.byId[this.props.postId])
   .then(() => this.props.history.push('/'));
 }

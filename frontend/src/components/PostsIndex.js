@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PostsDetail from './PostsDetail';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { requestPosts } from '../actions/posts_actions';
+import { requestPosts, requestVotePost } from '../actions/posts_actions';
 import { requestCategories } from '../actions/category_actions';
 
 class PostsIndex extends React.Component {
@@ -25,12 +25,20 @@ class PostsIndex extends React.Component {
     this.props.requestPosts()
   };
 
+  updateVoteScore(id, vote) {
+    this.props.requestVotePost(id, vote);
+  }
+
   renderPosts() {
     const sortedPosts = _.sortBy(this.props.posts.byId, this.state.sort).reverse();
     return _.map(sortedPosts, post => {
       return (
         <ul className='post-info' key={post.id}>
           <PostsDetail post={post} key={post.id}/>
+            <div className='vote-buttons'>
+              <button onClick={() => {this.updateVoteScore(post.id, 'upVote');}}>Upvote</button>
+              <button onClick={() => {this.updateVoteScore(post.id, 'downVote');}}>Downvote</button>
+            </div>
         </ul>
       );
     });
@@ -81,7 +89,8 @@ const mapStateToProps = ({posts, categories}) => ({
 
 const mapDispatchToProps = dispatch => ({
     requestPosts:     () => dispatch(requestPosts()),
-    requestCategories: () => dispatch(requestCategories())
+    requestCategories: () => dispatch(requestCategories()),
+    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsIndex);
