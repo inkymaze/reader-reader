@@ -7,8 +7,7 @@ import {RECEIVE_POSTS,
 
 const initialState = {
   byId: {},
-  allIds: [],
-  comments: {}
+  allIds: []
 };
 
 const PostsReducer = (state = initialState, action) => {

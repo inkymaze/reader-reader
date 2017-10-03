@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { requestPosts, requestVotePost } from '../actions/posts_actions';
 import { requestCategories } from '../actions/category_actions';
-import { requestComments } from '../actions/comments_actions';
 
 class PostsIndex extends React.Component {
   state = {
@@ -15,8 +14,6 @@ class PostsIndex extends React.Component {
   componentDidMount() {
     this.props.requestCategories()
     this.props.requestPosts()
-
-
   };
 
   updateVoteScore(id, vote) {
@@ -27,19 +24,17 @@ class PostsIndex extends React.Component {
     let count = 0;
     if (this.props.comments){
       _.map(this.props.comments.byId, comment => {
-
-      if (comment.parentId === postId) {
-        count += 1
-        console.log(count);
-      }
-    }
+        if (comment.parentId === postId) {
+            count += 1;
+          }
+        }
       )
     }
-      return count
+    return count
   }
 
   renderPosts() {
-    console.log('index props', this.props);
+
     const sortedPosts = _.sortBy(this.props.posts.byId, this.state.sort).reverse();
 
     return _.map(sortedPosts, post => {
@@ -71,7 +66,7 @@ class PostsIndex extends React.Component {
 
 
   render () {
-    console.log(this.props);
+  
     if (!this.props.posts) return null;
 
     return (
@@ -105,8 +100,7 @@ const mapStateToProps = ({posts, categories, comments}) => ({
 const mapDispatchToProps = dispatch => ({
     requestPosts:     () => dispatch(requestPosts()),
     requestCategories: () => dispatch(requestCategories()),
-    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
-    requestComments: (postId) => dispatch(requestComments(postId))
+    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsIndex);

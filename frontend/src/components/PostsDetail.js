@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { requestDeletePost } from '../actions/posts_actions';
-import { requestComments } from '../actions/comments_actions';
 
 class PostsDetail extends React.Component {
 
@@ -19,15 +18,12 @@ class PostsDetail extends React.Component {
     return time;
   }
 
-
-
   onDeletePost(e) {
     e.preventDefault();
     this.props.requestDeletePost(this.props.post);
   }
 
   render (){
-
     const {post} = this.props;
 
     return (
@@ -55,8 +51,7 @@ class PostsDetail extends React.Component {
 
 
 const mapDispatchToProps = dispatch => ({
-  requestDeletePost: (post) => dispatch(requestDeletePost(post)),
-  requestComments: (postId) => dispatch(requestComments(postId))
+  requestDeletePost: (post) => dispatch(requestDeletePost(post))
 });
 
 export default connect(null,mapDispatchToProps)(PostsDetail);

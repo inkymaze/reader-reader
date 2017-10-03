@@ -15,6 +15,7 @@ class CommentsIndex extends React.Component {
   renderComments() {
 
     return _.map(this.props.comments.byId, comment => {
+      if (comment.parentId === this.props.postId) {
         return (
           <ul className='comment-info' key={comment.id} >
             <CommentDetail
@@ -23,14 +24,28 @@ class CommentsIndex extends React.Component {
               requestVoteComment={this.props.requestVoteComment}/>
           </ul>
         );
+      }
     });
+  }
+
+  commentCount() {
+    let count = 0;
+    if (this.props.comments){
+      _.map(this.props.comments.byId, comment => {
+        if (comment.parentId === this.props.postId) {
+            count += 1;
+          }
+        }
+      );
+    }
+    return count;
   }
 
   render() {
 
     return (
       <div>
-        <div className='comment-header'>Comments({this.props.comments.allIds.length}):</div>
+        <div className='comment-header'>Comments({this.commentCount()}):</div>
           <ul className='posts-list'>
             {this.renderComments()}
           </ul>

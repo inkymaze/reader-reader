@@ -40,7 +40,10 @@ export const requestPosts = () => dispatch => {
 export const requestPost = (id) => dispatch => {
   return fetchPost(id).then( post => {
       dispatch(receivePost(post));
+      dispatch(requestComments(post.id));
+      return post;
     });
+
 };
 
 export const requestUpdatePost = (post) => dispatch => {
