@@ -4,7 +4,6 @@ import { requestCategories } from '../actions/category_actions';
 import { requestPosts, requestVotePost, requestDeletePost } from '../actions/posts_actions';
 import _ from 'lodash';
 import PostsDetail from './PostsDetail';
-import { Link } from 'react-router-dom';
 
 class PostCategory extends React.Component {
   componentDidMount() {
@@ -23,6 +22,19 @@ class PostCategory extends React.Component {
     this.props.requestVotePost(id, vote);
   }
 
+  commentCount(postId) {
+    let count = 0;
+    if (this.props.comments){
+      _.map(this.props.comments.byId, comment => {
+        if (comment.parentId === postId) {
+            count += 1;
+          }
+        }
+      );
+    }
+    return count;
+  }
+
   renderCategoryPosts() {
     const category = this.props.match.params.category;
 
@@ -30,14 +42,12 @@ class PostCategory extends React.Component {
       if (post.category === category) {
       return (
         <ul className='post-info' key={post.id}>
-          <PostsDetail post={post} key={post.id}/>
+          <PostsDetail post={post} key={post.id} count={this.commentCount(post.id)}/>
             <div className='vote-buttons'>
               <button onClick={() => {this.updateVoteScore(post.id, 'upVote');}}>Upvote</button>
               <button onClick={() => {this.updateVoteScore(post.id, 'downVote');}}>Downvote</button>
             </div>
         </ul>
-
-
       );
      }
     });
@@ -45,7 +55,7 @@ class PostCategory extends React.Component {
 
 
   render () {
-
+    console.log(this.props);
     return (
       <div>
         <ul>
@@ -58,7 +68,8 @@ class PostCategory extends React.Component {
 
 const mapStateToProps = (state) => ({
   posts: state.posts,
-  categories: state.categories
+  categories: state.categories,
+  comments: state.comments
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -69,15 +80,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostCategory);
-
-// <ul className='post-info'>
-//   <Link to={`/${post.category}/${post.id}`} className='post-detail-link' key={post.id}>
-//     <PostsDetail post={post} key={post.id}/>
-//   </Link>
-//     <div className='vote-buttons'>
-//       <button onClick={() => {this.updateVoteScore(post.id, 'upVote');}}>Upvote</button>
-//       <button onClick={() => {this.updateVoteScore(post.id, 'downVote');}}>Downvote</button>
-//     </div>
-//     <button onClick={(e) => (this.onDeletePost(e, {post}))}>Delete Post</button>
-//
-// </ul>

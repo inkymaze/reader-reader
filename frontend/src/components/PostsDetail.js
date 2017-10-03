@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
-
+import { requestDeletePost } from '../actions/posts_actions';
+import { requestComments } from '../actions/comments_actions';
 
 class PostsDetail extends React.Component {
 
@@ -20,23 +20,28 @@ class PostsDetail extends React.Component {
   }
 
 
+
   onDeletePost(e) {
     e.preventDefault();
     this.props.requestDeletePost(this.props.post);
   }
 
   render (){
+
     const {post} = this.props;
 
     return (
       <div>
         <div>
-          <Link to={`/${post.category}/${post.id}`} className='post-detail-link' key={post.id}>
+          <Link to={`/${post.category}/${post.id}`}
+
+            className='post-detail-link' key={post.id}>
           <h3>Title:{post.title}</h3>
           <h5>Category: {post.category}</h5>
           <h5>Author:{post.author}</h5>
           <h5>{this.timeConverter(this.props.post.timestamp)}</h5>
           <p>Body:{post.body}</p>
+          <h5>({this.props.count}) comments on this post</h5>
           </Link>
           <h5>Score:{post.voteScore}</h5>
             <Link to={`/posts/${post.id}/edit`}>Edit Post</Link>
@@ -47,16 +52,11 @@ class PostsDetail extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  post: ownProps.post
-});
+
 
 const mapDispatchToProps = dispatch => ({
-  requestPost:     (id) => dispatch(requestPost(id)),
   requestDeletePost: (post) => dispatch(requestDeletePost(post)),
-  requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
+  requestComments: (postId) => dispatch(requestComments(postId))
 });
 
 export default connect(null,mapDispatchToProps)(PostsDetail);
-
-// export default PostsDetail;

@@ -8,14 +8,13 @@ import { requestComments,
 
 class CommentsIndex extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.requestComments(this.props.postId);
   }
 
   renderComments() {
-    return _.map(this.props.comments.byId, comment => {
-      if (comment.parentId === this.props.postId && comment.deleted === false) {
 
+    return _.map(this.props.comments.byId, comment => {
         return (
           <ul className='comment-info' key={comment.id} >
             <CommentDetail
@@ -24,15 +23,14 @@ class CommentsIndex extends React.Component {
               requestVoteComment={this.props.requestVoteComment}/>
           </ul>
         );
-      }
     });
   }
 
   render() {
-    console.log('comments idx', this.props);
+
     return (
       <div>
-        <div className='comment-header'>Comments:</div>
+        <div className='comment-header'>Comments({this.props.comments.allIds.length}):</div>
           <ul className='posts-list'>
             {this.renderComments()}
           </ul>

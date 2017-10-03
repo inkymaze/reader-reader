@@ -17,12 +17,18 @@ const CommentsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case RECEIVE_COMMENTS:
-      nextState = initialState;
+
       action.comments.forEach(comment => {
         byId[comment.id] = comment;
         allIds.unshift(comment.id);
       });
+        // console.log('receive comments');
+        // console.log('state', state);
+        // console.log('byId', byId);
+        // console.log('allIds', allIds);
       return merge( {}, state, { byId }, { allIds });
+
+
 
     case RECEIVE_COMMENT:
       let comment = action.comment;

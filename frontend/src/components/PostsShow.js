@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CommentsIndex from './CommentsIndex';
 import { requestPost, requestDeletePost, requestVotePost } from '../actions/posts_actions';
-
+import { requestComments } from '../actions/comments_actions';
 class PostsShow extends React.Component {
 
 componentDidMount() {
   this.props.requestPost(this.props.postId);
-}
+
+    this.props.requestComments(this.props.postId);
+  }
+
 
 updateVoteScore(id, vote) {
   this.props.requestVotePost(id, vote);
@@ -57,12 +60,14 @@ render (){
 const mapStateToProps = (state, ownProps) => ({
   posts: state.posts,
   postId: ownProps.match.params.id,
+  comments: state.comments
 });
 
 const mapDispatchToProps = dispatch => ({
   requestPost:     (id) => dispatch(requestPost(id)),
   requestDeletePost: (post) => dispatch(requestDeletePost(post)),
   requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
+  requestComments: (postId) => dispatch(requestComments(postId))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsShow);

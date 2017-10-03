@@ -1,4 +1,5 @@
 import { fetchPosts, fetchPost, updatePost, deletePost, votePost } from '../utils/post_api';
+import { requestComments } from './comments_actions';
 
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
@@ -25,10 +26,14 @@ export const receiveVotePost = (post) => ({
   post
 });
 
-
 export const requestPosts = () => dispatch => {
   return fetchPosts().then( posts => {
       dispatch(receivePosts(posts));
+      posts.map(post=>{
+        dispatch(requestComments(post.id));
+        return post;
+      });
+
     });
 };
 

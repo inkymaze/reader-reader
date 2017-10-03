@@ -3,11 +3,12 @@ import {RECEIVE_POSTS,
         RECEIVE_POST,
         DELETE_POST,
         VOTE_POST } from '../actions/posts_actions';
-import _ from 'lodash';
+
 
 const initialState = {
   byId: {},
-  allIds: []
+  allIds: [],
+  comments: {}
 };
 
 const PostsReducer = (state = initialState, action) => {

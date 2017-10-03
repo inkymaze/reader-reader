@@ -5,42 +5,55 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { requestPosts, requestVotePost } from '../actions/posts_actions';
 import { requestCategories } from '../actions/category_actions';
+import { requestComments } from '../actions/comments_actions';
 
 class PostsIndex extends React.Component {
   state = {
-    categories: [],
-    posts: {
-      byId:{},
-      allIds:[]
-    },
-    comments: {
-      byId:{},
-      allIds:[]
-    },
     sort: 'title'
   }
 
   componentDidMount() {
     this.props.requestCategories()
     this.props.requestPosts()
+
+
   };
 
   updateVoteScore(id, vote) {
     this.props.requestVotePost(id, vote);
   }
 
+  commentCount(postId) {
+    let count = 0;
+    if (this.props.comments){
+      _.map(this.props.comments.byId, comment => {
+
+      if (comment.parentId === postId) {
+        count += 1
+        console.log(count);
+      }
+    }
+      )
+    }
+      return count
+  }
+
   renderPosts() {
+    console.log('index props', this.props);
     const sortedPosts = _.sortBy(this.props.posts.byId, this.state.sort).reverse();
+
     return _.map(sortedPosts, post => {
+
       return (
         <ul className='post-info' key={post.id}>
-          <PostsDetail post={post} key={post.id}/>
+          <PostsDetail post={post} key={post.id} count={this.commentCount(post.id)}/>
             <div className='vote-buttons'>
               <button onClick={() => {this.updateVoteScore(post.id, 'upVote');}}>Upvote</button>
               <button onClick={() => {this.updateVoteScore(post.id, 'downVote');}}>Downvote</button>
             </div>
         </ul>
       );
+
     });
   }
 
@@ -58,6 +71,7 @@ class PostsIndex extends React.Component {
 
 
   render () {
+    console.log(this.props);
     if (!this.props.posts) return null;
 
     return (
@@ -82,15 +96,17 @@ class PostsIndex extends React.Component {
   }
 }
 
-const mapStateToProps = ({posts, categories}) => ({
+const mapStateToProps = ({posts, categories, comments}) => ({
   posts,
-  categories
+  categories,
+  comments
 });
 
 const mapDispatchToProps = dispatch => ({
     requestPosts:     () => dispatch(requestPosts()),
     requestCategories: () => dispatch(requestCategories()),
-    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote))
+    requestVotePost: (id, vote) => dispatch(requestVotePost(id, vote)),
+    requestComments: (postId) => dispatch(requestComments(postId))
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(PostsIndex);
